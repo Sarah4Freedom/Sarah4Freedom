@@ -2,100 +2,110 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sarah for Freedom</title>
   <style>
-    /* BASIC RESET */
+    /* RESET / GLOBAL STYLES */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
-    html, body {
-      height: 100%;
-      font-family: 'Helvetica Neue', Arial, sans-serif;
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
       color: #333;
-      overflow: hidden; /* We'll handle scrolling via a container */
+      line-height: 1.6;
+      background-color: #f8f8f8;
+    }
+    a {
+      color: #b30000;  /* Red accent */
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    a:hover {
+      color: #870000;
+      text-decoration: underline;
+    }
+    h1, h2, h3 {
+      margin-bottom: 0.5em;
+    }
+    p {
+      margin-bottom: 1em;
+      text-align: justify;
     }
 
-    /* SCROLL-SNAP CONTAINER */
-    .snap-container {
-      height: 100%;
-      width: 100%;
-      overflow-y: scroll;                /* Vertical scroll */
-      scroll-snap-type: y mandatory;     /* Enable snap scrolling on Y-axis */
-      scroll-behavior: smooth;           /* Smooth transitions on anchor jumps */
+    /* SMOOTH SCROLLING FOR ANCHORS */
+    html {
+      scroll-behavior: smooth;
     }
 
-    /* FULL-PAGE SECTIONS */
-    section {
-      height: 100vh;             /* Each section fills the viewport */
-      width: 100%;
-      scroll-snap-align: start;  /* Each section snaps at the start */
-      display: flex;             /* We'll use flex to center or position content */
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 20px;        /* Some padding for content */
-      text-align: center;        /* Center text by default */
-    }
-
-    /* TOP NAVIGATION (FIXED) */
+    /* STICKY NAV */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 60px;
-      background: rgba(255, 255, 255, 0.8);
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: #fff;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       z-index: 999;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
       display: flex;
-      align-items: center;
       justify-content: center;
-      backdrop-filter: blur(8px);
+      align-items: center;
+      height: 60px;
     }
     nav ul {
       list-style: none;
       display: flex;
-      gap: 20px;
+      gap: 25px;
     }
     nav li {
       display: inline-block;
     }
     nav a {
-      text-decoration: none;
-      color: #b30000; /* Canadian Red accent */
       font-weight: bold;
       font-size: 0.95em;
       padding: 8px 0;
-    }
-    nav a:hover {
-      color: #870000;
+      color: #b30000;
     }
 
-    /* SECTION 1: HERO */
-    #hero {
-      background: #f6f6f6; /* softer than bright pink */
+    /* HERO SECTION (PARALLAX BACKGROUND) */
+    .hero {
+      position: relative;
+      min-height: 90vh; /* nearly full screen */
+      background: url("https://via.placeholder.com/1920x1080/ffeded/ffffff?text=Your+Background+Image") no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
     }
-    .hero-content {
-      max-width: 600px;
-      margin: auto;
+    .hero-overlay {
+      background-color: rgba(255, 255, 255, 0.6); /* light overlay for contrast */
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
     }
-    .hero-content h1 {
+    .hero-overlay h1 {
+      color: #b30000;
+      margin-bottom: 10px;
       font-size: 2em;
-      color: #b30000; 
-      margin-bottom: 0.5em;
     }
-    .hero-subtitle {
-      color: #555;
-      font-weight: 500;
-      margin-bottom: 1em;
+    .hero-overlay p {
+      color: #444;
+      margin-bottom: 20px;
     }
+
     /* SLIDESHOW */
     .slideshow-container {
       position: relative;
-      width: 220px;
-      height: 220px;
+      width: 200px;
+      height: 200px;
       margin: 0 auto 20px;
       overflow: hidden;
       border-radius: 50%;
@@ -135,40 +145,57 @@
       animation-delay: 6s;
     }
 
-    /* SECTION 2: ABOUT SARAH */
-    #about {
-      background: #fff;
-      color: #333;
+    /* DONATION INFO CARD (CARVE OUT) */
+    .donation-card {
+      position: absolute;
+      top: 20px; 
+      right: 20px; 
+      width: 260px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(4px);
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: left;
     }
-    #about h2 {
+    .donation-card h3 {
       color: #b30000;
-      margin-bottom: 1em;
+      margin-bottom: 10px;
+      font-size: 1.1em;
     }
-    .about-text {
-      max-width: 600px;
-      margin: auto;
-      text-align: left; /* You can switch to left-align if you prefer */
+    .donation-card p {
+      text-align: left;
+      margin-bottom: 10px;
+      font-size: 0.9em;
+      color: #444;
     }
-    .about-text p {
-      text-align: justify;
-      margin-bottom: 1em;
-      line-height: 1.6;
+    .donation-card a {
+      font-weight: normal;
+      text-decoration: underline;
     }
 
-    /* SECTION 3: EMERGENCIES ACT */
-    #emergencies-act {
-      background: #faf3f3; /* Slightly tinted background */
+    /* MAIN CONTENT SECTIONS */
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
     }
-    #emergencies-act h2 {
+    .section {
+      margin-bottom: 40px;
+    }
+    .section h2 {
+      margin-bottom: 15px;
       color: #b30000;
-      margin-bottom: 1em;
+      font-size: 1.5em;
     }
+
+    /* FREEDOM GALLERY */
     .freedom-gallery {
       display: flex;
-      flex-wrap: wrap;
       gap: 20px;
+      flex-wrap: wrap;
       justify-content: center;
-      margin: 20px 0;
+      margin-bottom: 20px;
     }
     .freedom-gallery img {
       width: 45%;
@@ -176,258 +203,216 @@
       border-radius: 5px;
       box-shadow: 0 0 5px rgba(0,0,0,0.1);
     }
-    .emerg-text {
-      max-width: 700px;
-      margin: 0 auto;
-      text-align: justify;
-    }
 
-    /* SECTION 4: CNO CASE (with internal scroll example) */
-    #cno-case {
-      background: #fff;
-      color: #333;
-      display: flex;
-      /* Let’s demonstrate scrolling inside so text doesn't overflow off the screen. */
-    }
-    .cno-content {
-      max-width: 600px;
-      margin: auto;
-      overflow-y: auto;
-      padding: 0 20px;
-      height: 60vh; /* This is your internal scroll area if content is long */
-      border-radius: 8px;
-      background: #f9f9f9;
-    }
-    .cno-content h2 {
-      color: #b30000;
-      margin: 20px 0 10px;
-    }
-    .cno-content p {
-      text-align: justify;
-      margin-bottom: 1em;
-      line-height: 1.5;
-    }
-
-    /* SECTION 5: SUPPORT */
-    #support {
-      background: #fdfdfd;
-    }
-    #support h3 {
-      color: #b30000;
-      margin-bottom: 1em;
-    }
-    .support-text {
-      max-width: 600px;
-      margin: 0 auto;
-      text-align: left;
-    }
-    .support-text p {
-      text-align: justify;
-      margin-bottom: 1em;
-      line-height: 1.6;
-    }
-    .social-links {
-      margin-top: 10px;
-    }
-    .social-links a {
-      margin: 0 10px;
-    }
-
-    /* FOOTER (Optional if you want a static bottom) */
+    /* FOOTER */
     footer {
+      background: #fff;
       text-align: center;
-      padding: 10px;
-      background: #f4f4f4;
+      padding: 20px;
       font-size: 0.9em;
       color: #666;
+      border-top: 1px solid #eee;
     }
   </style>
 </head>
+
 <body>
 
-  <!-- FIXED NAV -->
+  <!-- STICKY NAV -->
   <nav>
-    <ul>
-      <li><a href="#hero">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#emergencies-act">Emergencies Act</a></li>
-      <li><a href="#cno-case">CNO Case</a></li>
-      <li><a href="#support">Support</a></li>
-    </ul>
+    <div class="nav-container">
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#emergencies-act">Emergencies Act</a></li>
+        <li><a href="#cno-case">CNO Case</a></li>
+        <li><a href="#support">Support</a></li>
+      </ul>
+    </div>
   </nav>
 
-  <!-- SCROLL-SNAP WRAPPER -->
-  <div class="snap-container">
+  <!-- HERO SECTION -->
+  <section id="hero" class="hero">
+    <!-- Donation Card (top-right corner) -->
+    <div class="donation-card">
+      <h3>Support Sarah</h3>
+      <p>
+        Prefer Interac E-Transfer?<br/>
+        Send to <strong>sarah4freedom@gmail.com</strong>
+      </p>
+      <p>
+        Outside Canada? Donate via<br/>
+        <a href="https://www.givesendgo.com/ThepeoplevstheEmergenciesAct" target="_blank">
+          GiveSendGo
+        </a>
+      </p>
+    </div>
 
-    <!-- SECTION 1: HERO -->
-    <section id="hero">
-      <div class="hero-content">
-        <div class="slideshow-container">
-          <!-- Replace with your own images -->
-          <div class="slide">
-            <img src="IMAGE_1.jpg" alt="Sarah's Profile 1" />
-          </div>
-          <div class="slide">
-            <img src="IMAGE_2.jpg" alt="Sarah's Profile 2" />
-          </div>
-          <div class="slide">
-            <img src="IMAGE_3.jpg" alt="Sarah's Profile 3" />
-          </div>
+    <div class="hero-overlay">
+      <div class="slideshow-container">
+        <div class="slide">
+          <img src="IMAGE_1.jpg" alt="Sarah's Profile 1" />
         </div>
-        <h1>Sarah for Freedom</h1>
-        <div class="hero-subtitle">
-          Advocating for Informed Consent, Free Speech, &amp; Constitutional Freedoms
+        <div class="slide">
+          <img src="IMAGE_2.jpg" alt="Sarah's Profile 2" />
+        </div>
+        <div class="slide">
+          <img src="IMAGE_3.jpg" alt="Sarah's Profile 3" />
         </div>
       </div>
-    </section>
+      <h1>Sarah for Freedom</h1>
+      <p class="hero-subtitle">
+        Advocating for Informed Consent,<br/> 
+        Free Speech &amp; Constitutional Freedoms
+      </p>
+    </div>
+  </section>
 
-    <!-- SECTION 2: ABOUT SARAH -->
-    <section id="about">
+  <!-- MAIN CONTENT -->
+  <div class="container">
+
+    <!-- ABOUT SARAH -->
+    <section id="about" class="section">
       <h2>About Sarah</h2>
-      <div class="about-text">
-        <p>
-          Sarah Choujonian is a former Registered Practical Nurse (RPN) from Ontario, Canada, 
-          with over a decade of experience caring for children with disabilities, senior 
-          residents in long-term care, and advocating as a union leader. She became a vocal 
-          critic of certain COVID-19 policies, believing that lockdowns and mandates were 
-          causing more harm than good. After speaking publicly and challenging the official 
-          narrative, she faced backlash and lost her nursing positions.
-        </p>
-        <p>
-          Sarah founded <strong>Nurses Against Lockdowns</strong>, an advocacy group focused 
-          on raising awareness about the detrimental social and psychological effects of 
-          restrictive COVID-19 policies. She later co-founded 
-          <strong>Canadian Frontline Nurses</strong>, which organized rallies and events 
-          supporting healthcare workers opposed to vaccine mandates, and promoted open 
-          scientific dialogue on the measures implemented by public health authorities.
-        </p>
-        <p>
-          Sarah is now in a legal battle to defend her right—and the right of all healthcare 
-          professionals—to speak freely, promote dialogue and debate, and uphold the principle 
-          of informed consent.
-        </p>
-      </div>
+      <p>
+        Sarah Choujonian is a former Registered Practical Nurse (RPN) from Ontario, Canada, 
+        with over a decade of experience caring for children with disabilities, senior 
+        residents in long-term care, and advocating as a union leader. She became a vocal 
+        critic of certain COVID-19 policies, believing that lockdowns and mandates were 
+        causing more harm than good. After speaking publicly and challenging the official 
+        narrative, she faced backlash and lost her nursing positions.
+      </p>
+      <p>
+        Sarah founded <strong>Nurses Against Lockdowns</strong>, an advocacy group focused 
+        on raising awareness about the detrimental social and psychological effects of 
+        restrictive COVID-19 policies. She later co-founded 
+        <strong>Canadian Frontline Nurses</strong>, which organized rallies and events 
+        supporting healthcare workers opposed to vaccine mandates, and promoted open 
+        scientific dialogue on the measures implemented by public health authorities.
+      </p>
+      <p>
+        Sarah is now in a legal battle to defend her right—and the right of all healthcare 
+        professionals—to speak freely, promote dialogue and debate, and uphold the principle 
+        of informed consent.
+      </p>
     </section>
 
-    <!-- SECTION 3: EMERGENCIES ACT -->
-    <section id="emergencies-act">
+    <!-- EMERGENCIES ACT CHALLENGE -->
+    <section id="emergencies-act" class="section">
       <h2>Emergencies Act Challenge</h2>
       <div class="freedom-gallery">
-        <img 
-          src="LEFT_IMAGE_PATH.jpg" 
-          alt="Freedom Convoy Left" 
-        />
+        <img src="LEFT_IMAGE_PATH.jpg" alt="Freedom Convoy Left" />
         <img 
           src="https://upload.wikimedia.org/wikipedia/commons/8/8b/Freedom_Convoy_2022%2C_Ottawa%2C_February_12_%2818%29.jpg" 
           alt="Freedom Convoy Right" 
         />
       </div>
-      <div class="emerg-text">
-        <p>
-          In January 2022, Sarah and other members of 
-          <strong>Canadian Frontline Nurses</strong> joined the peaceful Freedom 
-          Convoy protests in Ottawa. Canadian Frontline Nurses was recognized as a 
-          participating group in the Freedom Convoy. When Prime Minister Trudeau 
-          invoked the Emergencies Act, it allowed banks to freeze protesters’ accounts 
-          without due process—an unprecedented and controversial move. Believing 
-          this was an unconstitutional overreach of power designed to silence 
-          lawful dissent, Sarah’s group was the first to challenge the invocation 
-          in Federal Court. Although the government eventually revoked the emergency 
-          declaration, the fight continues on appeal, where Sarah seeks to defend 
-          Canadians’ fundamental freedoms and expose the political motivations 
-          behind these extreme measures.
-        </p>
-        <p>
-          Canadian Frontline Nurses seeks to represent the perspective of the 
-          protestors, setting the record straight: they were not “fringe racists” 
-          or “terrorists with unacceptable views,” but rather patriotic Canadians 
-          from diverse backgrounds who peacefully expressed dissent. Their goal was 
-          to encourage the government to end divisive mandates and stop marginalizing 
-          Canadians for holding different viewpoints. In court, the government continues 
-          to characterize these demonstrators as violent extremists posing a serious 
-          threat to national security. Sarah’s legal battle challenges that narrative 
-          head-on.
-        </p>
-        <p>
-          If you are interested in observing the proceedings at the Federal Court of Appeal, 
-          which is scheduled to take place on February 4th and 5th, 2025, starting at 
-          9:30 AM EST, please 
-          <a href="YOUR_FEDERAL_COURT_LINK_HERE" 
-             target="_blank" 
-             rel="noopener noreferrer">
-            click this link
-          </a> 
-          to register for a public link to the stream. 
-          <strong>NOTE: Recording the hearing in any fashion (including screenshots) or 
-          disseminating the hearing is prohibited.</strong>
-          See <a href="https://www.fca-caf.ca/en/pages/hearings/how-to-watch-a-hearing" 
-          target="_blank" 
-          rel="noopener noreferrer">
-            this link
-          </a> for further information.
-        </p>
-      </div>
+      <p>
+        In January 2022, Sarah and other members of 
+        <strong>Canadian Frontline Nurses</strong> joined the peaceful Freedom 
+        Convoy protests in Ottawa. Canadian Frontline Nurses was recognized as a 
+        participating group in the Freedom Convoy. When Prime Minister Trudeau 
+        invoked the Emergencies Act, it allowed banks to freeze protesters’ accounts 
+        without due process—an unprecedented and controversial move. Believing 
+        this was an unconstitutional overreach of power designed to silence 
+        lawful dissent, Sarah’s group was the first to challenge the invocation 
+        in Federal Court. Although the government eventually revoked the emergency 
+        declaration, the fight continues on appeal, where Sarah seeks to defend 
+        Canadians’ fundamental freedoms and expose the political motivations 
+        behind these extreme measures.
+      </p>
+      <p>
+        Canadian Frontline Nurses seeks to represent the perspective of the 
+        protestors, setting the record straight: they were not “fringe racists” 
+        or “terrorists with unacceptable views,” but rather patriotic Canadians 
+        from diverse backgrounds who peacefully expressed dissent. Their goal was 
+        to encourage the government to end divisive mandates and stop marginalizing 
+        Canadians for holding different viewpoints. In court, the government continues 
+        to characterize these demonstrators as violent extremists posing a serious 
+        threat to national security. Sarah’s legal battle challenges that narrative 
+        head-on.
+      </p>
+      <p>
+        If you are interested in observing the proceedings at the Federal Court of Appeal, 
+        which is scheduled to take place on February 4th and 5th, 2025, starting at 
+        9:30 AM EST, please 
+        <a href="YOUR_FEDERAL_COURT_LINK_HERE" 
+           target="_blank" 
+           rel="noopener noreferrer">
+          click this link
+        </a> 
+        to register for a public link to the stream. 
+        <strong>NOTE: Recording the hearing in any fashion (including screenshots) or 
+        disseminating the hearing is prohibited.</strong>
+        See <a href="https://www.fca-caf.ca/en/pages/hearings/how-to-watch-a-hearing" 
+        target="_blank" 
+        rel="noopener noreferrer">
+          this link
+        </a> for further information.
+      </p>
     </section>
 
-    <!-- SECTION 4: CNO CASE (with internal scroll area) -->
-    <section id="cno-case">
-      <div class="cno-content">
-        <h2>College of Nurses Discipline Case</h2>
-        <p>
-          The College of Nurses of Ontario (CNO) is attempting to discipline Sarah over a 
-          handful of social media posts and a public speech that questioned public health 
-          guidelines during COVID-19. The CNO alleges her information was “false, 
-          misleading, or inaccurate.” Sarah argues that her views contribute to the 
-          social and scientific debate about the measures that were deployed during 
-          the COVID-19 pandemic, and that the statements she made or shared are backed 
-          by research and expert testimony—testimony the College has refused to hear. 
-          She is now awaiting the outcome of a 30-day hearing and is prepared to appeal 
-          any decision that undermines a nurse’s right to engage in open scientific 
-          dialogue and free expression.
-        </p>
-        <p>
-          Despite these challenges, Sarah remains committed to advocating for transparency, 
-          informed consent, and robust scientific debate within healthcare. She believes 
-          that professionals should not face punishment for respectfully questioning 
-          official policies that impact patient care and public health on a large scale. 
-        </p>
-      </div>
+    <!-- CNO CASE -->
+    <section id="cno-case" class="section">
+      <h2>College of Nurses Discipline Case</h2>
+      <p>
+        The College of Nurses of Ontario (CNO) is attempting to discipline Sarah over a 
+        handful of social media posts and a public speech that questioned public health 
+        guidelines during COVID-19. The CNO alleges her information was “false, 
+        misleading, or inaccurate.” Sarah argues that her views contribute to the 
+        social and scientific debate about the measures that were deployed during 
+        the COVID-19 pandemic, and that the statements she made or shared are backed 
+        by research and expert testimony—testimony the College has refused to hear. 
+        She is now awaiting the outcome of a 30-day hearing and is prepared to appeal 
+        any decision that undermines a nurse’s right to engage in open scientific 
+        dialogue and free expression.
+      </p>
+      <p>
+        Despite these challenges, Sarah remains committed to advocating for transparency, 
+        informed consent, and robust scientific debate within healthcare. She believes 
+        that professionals should not face punishment for respectfully questioning 
+        official policies that impact patient care and public health on a large scale. 
+      </p>
     </section>
 
-    <!-- SECTION 5: SUPPORT -->
-    <section id="support">
-      <h3>Get Involved &amp; Show Your Support</h3>
-      <div class="support-text">
-        <p>
-          These legal battles are costly, and Sarah has lost her primary sources of 
-          income. If you believe in the principles of free speech, informed consent, 
-          and open scientific inquiry, consider contributing to her legal defense.
-        </p>
-        <p>
-          <strong>Interac E-Transfer (preferred):</strong> Please use your online banking 
-          and send to <strong>sarah4freedom@gmail.com</strong>.
-        </p>
-        <p>
-          <strong>Alternate Donation Option (Outside Canada):</strong><br/>
-          <a href="https://www.givesendgo.com/ThepeoplevstheEmergenciesAct" target="_blank">
-            GiveSendGo
-          </a>
-        </p>
-        <div class="social-links">
-          <p>Follow Sarah on Social Media:</p>
-          <a href="https://x.com/SarahChoujounia" target="_blank">Twitter/X</a> |
-          <a href="https://www.facebook.com/sarah.choujounian" target="_blank">Facebook</a> |
-          <a href="https://www.instagram.com/sarah_choujounian/" target="_blank">Instagram</a> |
-          <a href="https://www.tiktok.com/@sarahchoujounian" target="_blank">TikTok</a>
-        </div>
-      </div>
+    <!-- SUPPORT SECTION -->
+    <section id="support" class="section">
+      <h2>Get Involved &amp; Show Your Support</h2>
+      <p>
+        These legal battles are costly, and Sarah has lost her primary sources of 
+        income. If you believe in the principles of free speech, informed consent, 
+        and open scientific inquiry, consider contributing to her legal defense.
+      </p>
+      <p>
+        <strong>Interac E-Transfer (preferred):</strong> 
+        Please use your online banking and send to 
+        <strong>sarah4freedom@gmail.com</strong>.
+      </p>
+      <p>
+        <strong>Alternate Donation Option (Outside Canada):</strong><br/>
+        <a href="https://www.givesendgo.com/ThepeoplevstheEmergenciesAct" target="_blank">
+          GiveSendGo
+        </a>
+      </p>
+      <p>
+        Thank you for standing with Sarah in her mission to uphold basic freedoms 
+        and scientific transparency in healthcare.
+      </p>
+      <p>    
+        <strong>Follow Sarah on Social Media:</strong><br/>
+        <a href="https://x.com/SarahChoujounia" target="_blank">Twitter/X</a> |
+        <a href="https://www.facebook.com/sarah.choujounian" target="_blank">Facebook</a> |
+        <a href="https://www.instagram.com/sarah_choujounian/" target="_blank">Instagram</a> |
+        <a href="https://www.tiktok.com/@sarahchoujounian" target="_blank">TikTok</a>
+      </p>
     </section>
 
-  </div>
+  </div><!-- end container -->
 
-  <!-- OPTIONAL FOOTER -->
+  <!-- FOOTER -->
   <footer>
-    &copy; 2025 Sarah for Freedom. All Rights Reserved.
+    &copy; 2025 Sarah for Freedom. All rights reserved.
   </footer>
+
 </body>
 </html>
