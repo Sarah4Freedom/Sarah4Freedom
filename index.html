@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sarah for Freedom</title>
   <style>
-    /* RESET & GLOBAL STYLES */
+    /* RESET / GLOBAL STYLES */
     * {
       margin: 0;
       padding: 0;
@@ -13,8 +13,7 @@
     }
     html {
       scroll-behavior: smooth;
-      /* Account for sticky nav (60px) when jumping to anchors */
-      scroll-padding-top: 70px;
+      scroll-padding-top: 70px; /* offset for the sticky nav */
     }
     body {
       font-family: "Helvetica Neue", Arial, sans-serif;
@@ -22,6 +21,7 @@
       line-height: 1.6;
       background-color: #f8f8f8;
     }
+
     /* LINKS */
     a {
       color: #0645AD;  /* Classic hyperlink blue */
@@ -29,14 +29,16 @@
       transition: color 0.2s ease;
     }
     a:hover {
-      color: #0b3e8c;  /* Slightly darker on hover */
+      color: #0b3e8c;
       text-decoration: underline;
     }
     /* Special class for Sarah's email to be black */
     .email-link {
-      color: #000 !important; /* Force black text */
+      color: #000 !important;
       text-decoration: none;
     }
+
+    /* HEADING & PARAGRAPH STYLES */
     h1, h2, h3 {
       margin-bottom: 0.5em;
     }
@@ -45,7 +47,7 @@
       text-align: justify;
     }
 
-    /* STICKY NAV (unchanged from before) */
+    /* STICKY NAV */
     nav {
       position: sticky;
       top: 0;
@@ -74,93 +76,18 @@
       font-weight: bold;
       font-size: 0.95em;
       padding: 8px 0;
-      color: #b30000; /* Keeping the nav links in the red accent */
-      text-decoration: none;
+      color: #b30000; /* Red accent for nav links */
     }
     nav a:hover {
       color: #870000;
       text-decoration: underline;
     }
 
-    /* HERO SECTION WITH BACKGROUND SLIDESHOW */
-    .hero {
-      position: relative;
-      width: 100%;
-      height: 60vh;  /* Adjust as desired for hero size */
-      min-height: 400px; /* Ensure a reasonable minimum if the viewport is short */
-      overflow: hidden;  /* Hide slideshow images outside container */
-    }
-    /* The slideshow container is absolutely placed as a background layer */
-    .slideshow-bg {
-      position: absolute;
-      top: 0; 
-      left: 0; 
-      width: 100%; 
-      height: 100%;
-      z-index: 0;  /* behind any content overlays */
-    }
-    /* Each image inside the slideshow will be absolutely positioned and faded in/out */
-    .slide-bg {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background-position: center;
-      background-size: cover;
-      opacity: 0;
-      animation: slidefade 15s infinite;
-    }
-    /* KEYFRAMES for a 3-image rotation, each 5s visible in a 15s cycle.
-       If you have more images, adjust timing or add steps. */
-    @keyframes slidefade {
-      0%   { opacity: 1; }
-      33%  { opacity: 1; }
-      33.1%{ opacity: 0; }
-      66%  { opacity: 0; }
-      66.1%{ opacity: 1; }
-      100% { opacity: 1; }
-    }
-    .slide-bg:nth-child(1) {
-      animation-delay: 0s;
-    }
-    .slide-bg:nth-child(2) {
-      animation-delay: 5s;
-    }
-    .slide-bg:nth-child(3) {
-      animation-delay: 10s;
-    }
-
-    /* HERO CONTENT OVERLAY BOX (LEFT) */
-    .hero-content {
-      position: absolute;
-      z-index: 1; /* on top of background */
-      left: 5%;   /* left-of-center positioning */
-      top: 50%;
-      transform: translateY(-50%); /* center vertically */
-      background: rgba(255, 255, 255, 0.7);
-      padding: 20px;
-      border-radius: 6px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      max-width: 400px;
-    }
-    .hero-content h1 {
-      color: #b30000;
-      margin-bottom: 0.5em;
-      font-size: 1.6em;
-      text-align: center;
-    }
-    .hero-content p {
-      text-align: center; 
-      color: #444;
-      margin-bottom: 1em;
-      line-height: 1.4;
-    }
-
-    /* DONATION INFO (top-right corner) */
+    /* FIXED SUPPORT SARAH BOX */
     .donation-info {
-      position: absolute;
-      top: 20px; 
-      right: 20px; 
+      position: fixed; /* stays on screen */
+      top: 100px;      /* so it doesn't overlap the nav */
+      right: 20px;
       width: 270px;
       background: rgba(255, 255, 255, 0.8);
       backdrop-filter: blur(2px);
@@ -168,7 +95,7 @@
       padding: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       text-align: left;
-      z-index: 2; /* Above slideshow background, can be behind or above hero-content if desired */
+      z-index: 1000; /* ensure on top of content */
     }
     .donation-info h3 {
       color: #b30000;
@@ -186,7 +113,6 @@
       color: #b30000;
     }
     .donation-info a {
-      font-weight: normal;
       text-decoration: underline;
       color: #0645AD;  /* match link color */
     }
@@ -202,7 +128,66 @@
       color: #666;
     }
 
-    /* CONTENT SECTIONS */
+    /* BANNER SECTION (TITLE + SUBTITLE + SLIDESHOW) */
+    .banner {
+      text-align: center;
+      padding: 40px 20px; 
+      background: #fff;
+    }
+    .banner h1 {
+      font-size: 2em;     /* Big centered title */
+      color: #b30000;
+      margin-bottom: 10px;
+    }
+    .banner .subtitle {
+      margin-bottom: 30px;
+      font-size: 1.5em;   /* roughly same size as body headers, as requested */
+      color: #444;
+    }
+
+    /* SLIDESHOW BELOW SUBTITLE */
+    .slideshow-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin: 0 auto; /* center the slideshow */
+      overflow: hidden;
+      /* No border or frame */
+    }
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* If you want circles: border-radius: 50%; */
+    }
+    @keyframes slideshow {
+      0%   { opacity: 1; }
+      33%  { opacity: 1; }
+      33.1%{ opacity: 0; }
+      66%  { opacity: 0; }
+      66.1%{ opacity: 1; }
+      100% { opacity: 1; }
+    }
+    .slide:nth-child(1) {
+      animation: slideshow 9s infinite;
+    }
+    .slide:nth-child(2) {
+      animation: slideshow 9s infinite;
+      animation-delay: 3s;
+    }
+    .slide:nth-child(3) {
+      animation: slideshow 9s infinite;
+      animation-delay: 6s;
+    }
+
+    /* MAIN CONTENT SECTIONS */
     .container {
       max-width: 1000px;
       margin: 40px auto;
@@ -245,12 +230,11 @@
 </head>
 
 <body>
-
-  <!-- NAVIGATION (unchanged) -->
+  <!-- STICKY NAV -->
   <nav>
     <div class="nav-container">
       <ul>
-        <li><a href="#hero">Home</a></li>
+        <li><a href="#banner">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#emergencies-act">Emergencies Act</a></li>
         <li><a href="#cno-case">CNO Case</a></li>
@@ -259,50 +243,48 @@
     </div>
   </nav>
 
-  <!-- HERO with BACKGROUND SLIDESHOW -->
-  <section id="hero" class="hero">
-    <!-- Slideshow Background Container -->
-    <div class="slideshow-bg">
-      <!-- Replace each child .slide-bg with your actual portrait images -->
-      <div class="slide-bg" style="background-image: url('IMAGE_1.jpg');"></div>
-      <div class="slide-bg" style="background-image: url('IMAGE_2.jpg');"></div>
-      <div class="slide-bg" style="background-image: url('IMAGE_3.jpg');"></div>
-    </div>
+  <!-- FIXED DONATION INFO BOX ON THE RIGHT -->
+  <div class="donation-info">
+    <h3>Support Sarah</h3>
+    <p>
+      <strong>Interac E-Transfer:</strong><br/>
+      Send to <strong class="email-link">sarah4freedom@gmail.com</strong>
+    </p>
+    <hr/>
+    <p>
+      <strong>Outside Canada?</strong><br/>
+      <a href="https://www.givesendgo.com/ThepeoplevstheEmergenciesAct" 
+         target="_blank">
+        GiveSendGo
+      </a>
+    </p>
+    <hr/>
+    <p class="stand-up-message">
+      Together, we can stand up for freedom in healthcare and beyond.
+    </p>
+  </div>
 
-    <!-- Donation Info Box (Top-Right) -->
-    <div class="donation-info">
-      <h3>Support Sarah</h3>
-      <p>
-        <strong>Interac E-Transfer:</strong><br/>
-        Send to <strong class="email-link">sarah4freedom@gmail.com</strong>
-      </p>
-      <hr/>
-      <p>
-        <strong>Outside Canada?</strong><br/>
-        <a href="https://www.givesendgo.com/ThepeoplevstheEmergenciesAct" 
-           target="_blank">
-          GiveSendGo
-        </a>
-      </p>
-      <hr/>
-      <p class="stand-up-message">
-        Together, we can stand up for freedom in healthcare and beyond.
-      </p>
-    </div>
-
-    <!-- Hero Text Overlay (Left) -->
-    <div class="hero-content">
-      <h1>Sarah for Freedom</h1>
-      <p>
-        Advocating for Informed Consent,<br/> 
-        Free Speech &amp; Constitutional Freedoms
-      </p>
+  <!-- BANNER SECTION (TITLE, SUBTITLE, SLIDESHOW) -->
+  <section id="banner" class="banner">
+    <h1>Sarah for Freedom</h1>
+    <div class="subtitle">Advocating for Informed Consent, Free Speech &amp; Constitutional Freedoms</div>
+    
+    <!-- Slideshow below the subtitle -->
+    <div class="slideshow-container">
+      <div class="slide">
+        <img src="IMAGE_1.jpg" alt="Sarah's Profile 1">
+      </div>
+      <div class="slide">
+        <img src="IMAGE_2.jpg" alt="Sarah's Profile 2">
+      </div>
+      <div class="slide">
+        <img src="IMAGE_3.jpg" alt="Sarah's Profile 3">
+      </div>
     </div>
   </section>
 
   <!-- MAIN CONTENT -->
   <div class="container">
-
     <!-- ABOUT SARAH -->
     <section id="about" class="section">
       <h2>About Sarah</h2>
@@ -438,12 +420,12 @@
         <a href="https://www.tiktok.com/@sarahchoujounian" target="_blank">TikTok</a>
       </p>
     </section>
-
   </div><!-- end container -->
 
   <!-- FOOTER -->
   <footer>
     &copy; 2025 Sarah for Freedom. All rights reserved.
   </footer>
+
 </body>
 </html>
