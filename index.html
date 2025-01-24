@@ -19,11 +19,12 @@
       padding: 20px;
     }
     a {
-      color: #1a73e8;
+      color: #b30000;           /* Red link color */
       text-decoration: none;
     }
     a:hover {
       text-decoration: underline;
+      color: #870000;          /* Darker red on hover */
     }
     h1, h2, h3 {
       margin-bottom: 0.5em;
@@ -46,7 +47,7 @@
     /* HERO SECTION */
     .hero {
       position: relative;
-      background: #eaf6ff; /* Light blue background for "pop" */
+      background: #ffeaea;     /* Subtle pinkish-red for a Canadian feel */
       text-align: center;
       padding: 40px 20px;
       border-radius: 8px;
@@ -54,19 +55,21 @@
     }
     .hero h1 {
       margin: 20px 0;
-      color: #0066cc;
+      color: #b30000;         /* Deeper red for main title */
       font-size: 2em;
     }
-    .hero p {
-      margin: 10px 0;
+    /* Center the text specifically under the hero title */
+    .hero .hero-subtitle {
+      text-align: center;
       color: #444;
       font-weight: bold;
+      margin: 10px 0;
     }
 
     /* SLIDESHOW */
     .slideshow-container {
       position: relative;
-      width: 220px; /* Adjust for larger slides if you prefer */
+      width: 220px; 
       height: 220px;
       margin: 0 auto 20px; 
       overflow: hidden;
@@ -88,7 +91,7 @@
       border-radius: 50%;
     }
 
-    /* PURE CSS ANIMATION - 3 SLIDES, 9-SECOND TOTAL CYCLE */
+    /* PURE CSS SLIDESHOW (3 images, 3s each = 9s cycle) */
     @keyframes slideshow {
       0%   { opacity: 1; }
       33%  { opacity: 1; }
@@ -112,19 +115,21 @@
     /* TOP CALL TO ACTION */
     .top-cta {
       margin-top: 20px;
+      text-align: center; /* Center content inside top CTA */
     }
     .donate-button {
       display: inline-block;
       margin: 20px 10px 0;
       padding: 12px 24px;
-      background-color: #ff9800;
+      background-color: #b30000;
       color: #fff;
       font-weight: bold;
       border-radius: 5px;
       text-decoration: none;
+      transition: background-color 0.3s;
     }
     .donate-button:hover {
-      background-color: #e68a00;
+      background-color: #870000;
     }
 
     /* SECTIONS */
@@ -133,7 +138,7 @@
     }
     .section h2 {
       margin-bottom: 10px;
-      color: #0066cc;
+      color: #b30000;         /* Red headings */
     }
 
     /* FREEDOM CONVOY IMAGES (LANDSCAPE) */
@@ -141,12 +146,12 @@
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
-      justify-content: center; /* Center images horizontally */
+      justify-content: center; 
       margin-bottom: 20px;
     }
     .freedom-gallery img {
-      width: 48%; /* Adjust for desired size (or 100% for stacked) */
-      max-width: 600px; /* Cap image size if it's too large */
+      width: 48%; 
+      max-width: 600px; 
       border-radius: 5px;
       box-shadow: 0 0 5px rgba(0,0,0,0.1);
     }
@@ -165,13 +170,13 @@
     }
   </style>
 </head>
-
 <body>
   <div class="container">
 
     <!-- HERO / HEADER WITH SLIDESHOW -->
     <div class="hero">
       <div class="slideshow-container">
+        <!-- Replace with your own images -->
         <div class="slide">
           <img src="IMAGE_1.jpg" alt="Sarah's Profile 1" />
         </div>
@@ -183,7 +188,7 @@
         </div>
       </div>
       <h1>Sarah for Freedom</h1>
-      <p>Advocating for Informed Consent, Free Speech, & Constitutional Freedoms</p>
+      <div class="hero-subtitle">Advocating for Informed Consent, Free Speech, &amp; Constitutional Freedoms</div>
 
       <!-- Top Call to Action -->
       <div class="top-cta">
@@ -195,10 +200,6 @@
            target="_blank">
           Donate via GiveSendGo
         </a>
-        <a class="donate-button" 
-           href="mailto:sarah4freedom@gmail.com">
-          Send Interac E-Transfer
-        </a>
       </div>
     </div>
 
@@ -206,14 +207,15 @@
     <div class="section">
       <h2>About Sarah</h2>
       <p>
-        Sarah Choujonian is a former Registered Practical Nurse (RPN) from Ontario, Canada, with 
-        over a decade of experience caring for children with disabilities, senior residents 
-        in long-term care, and advocating as a union leader. She became a vocal critic of 
-        certain COVID-19 policies, believing that lockdowns and mandates were causing more 
-        harm than good. After speaking publicly and challenging the official narrative, she 
-        faced backlash, lost her nursing positions, and is now in a legal battle to defend 
-        her right—and the right of all healthcare professionals—to speak freely, promote 
-        dialogue and debate, and to defend the principle of informed consent.
+        Sarah Choujonian is a former Registered Practical Nurse (RPN) from Ontario, Canada, 
+        with over a decade of experience caring for children with disabilities, senior 
+        residents in long-term care, and advocating as a union leader. She became a vocal 
+        critic of certain COVID-19 policies, believing that lockdowns and mandates were 
+        causing more harm than good. After speaking publicly and challenging the official 
+        narrative, she faced backlash, lost her nursing positions, and is now in a legal 
+        battle to defend her right—and the right of all healthcare professionals—to speak 
+        freely, promote dialogue and debate, and to defend the principle of informed 
+        consent.
       </p>
     </div>
 
@@ -222,10 +224,12 @@
       <h2>Emergencies Act Challenge</h2>
       <!-- Two Larger, Landscape Images -->
       <div class="freedom-gallery">
+        <!-- Replace LEFT_IMAGE_PATH.jpg with your actual image -->
         <img 
           src="LEFT_IMAGE_PATH.jpg" 
           alt="Freedom Convoy Left" 
         />
+        <!-- Sample second image from Wikipedia; replace if you like -->
         <img 
           src="https://upload.wikimedia.org/wikipedia/commons/8/8b/Freedom_Convoy_2022%2C_Ottawa%2C_February_12_%2818%29.jpg" 
           alt="Freedom Convoy Right" 
@@ -235,22 +239,22 @@
         In January 2022, Sarah and other members of 
         <strong>Canadian Frontline Nurses</strong> joined the peaceful Freedom 
         Convoy protests in Ottawa. Canadian Frontline Nurses was recognized as a 
-        participating group in the Freedom Convoy. When Prime Minister Trudeau invoked the 
-        Emergencies Act, it allowed banks to freeze protesters’ accounts without 
-        due process—an unprecedented and controversial move. Believing this was an 
-        unconstitutional overreach of power designed to silence lawful dissent, 
-        Sarah’s group was the first to challenge the invocation in Federal Court. 
-        Although the government eventually revoked the emergency declaration, the 
-        fight continues on appeal, where Sarah seeks to defend Canadians’ 
-        fundamental freedoms and expose the political motivations behind these 
-        extreme measures.
+        participating group in the Freedom Convoy. When Prime Minister Trudeau 
+        invoked the Emergencies Act, it allowed banks to freeze protesters’ accounts 
+        without due process—an unprecedented and controversial move. Believing 
+        this was an unconstitutional overreach of power designed to silence 
+        lawful dissent, Sarah’s group was the first to challenge the invocation 
+        in Federal Court. Although the government eventually revoked the emergency 
+        declaration, the fight continues on appeal, where Sarah seeks to defend 
+        Canadians’ fundamental freedoms and expose the political motivations 
+        behind these extreme measures.
       </p>
       <p>
-        Canadian Frontline Nurses seeks to represent the perspective of the protestors, 
-        setting the record straight: they were not “fringe racists” or “terrorists with 
-        unacceptable views,” as the government labeled them, but rather patriotic 
-        Canadians from diverse backgrounds who peacefully expressed dissent. Their goal 
-        was to encourage the government to end divisive mandates and stop marginalizing 
+        Canadian Frontline Nurses seeks to represent the perspective of the 
+        protestors, setting the record straight: they were not “fringe racists” 
+        or “terrorists with unacceptable views,” but rather patriotic Canadians 
+        from diverse backgrounds who peacefully expressed dissent. Their goal was 
+        to encourage the government to end divisive mandates and stop marginalizing 
         Canadians for holding different viewpoints. In court, the government continues 
         to characterize these demonstrators as violent extremists posing a serious 
         threat to national security. Sarah’s legal battle challenges that narrative 
@@ -271,7 +275,7 @@
         See <a href="https://www.fca-caf.ca/en/pages/hearings/how-to-watch-a-hearing" 
         target="_blank" 
         rel="noopener noreferrer">
-          https://www.fca-caf.ca/en/pages/hearings/how-to-watch-a-hearing
+          this link
         </a> for further information.
       </p>
     </div>
@@ -284,12 +288,12 @@
         handful of social media posts and a public speech that questioned public health 
         guidelines during COVID-19. The CNO alleges her information was “false, 
         misleading, or inaccurate.” Sarah argues that her views contribute to the 
-        social and scientific debate about the measures that were deployed during the 
-        COVID-19 pandemic, and that the statements she made or shared are backed by 
-        research and expert testimony—testimony the College has refused to hear. She is 
-        now awaiting the outcome of a 30-day hearing and is prepared to appeal any 
-        decision that undermines a nurse’s right to engage in open scientific dialogue 
-        and free expression.
+        social and scientific debate about the measures that were deployed during 
+        the COVID-19 pandemic, and that the statements she made or shared are backed 
+        by research and expert testimony—testimony the College has refused to hear. 
+        She is now awaiting the outcome of a 30-day hearing and is prepared to appeal 
+        any decision that undermines a nurse’s right to engage in open scientific 
+        dialogue and free expression.
       </p>
     </div>
 
@@ -297,12 +301,11 @@
     <div class="footer">
       <h3>Get Involved & Show Your Support</h3>
       <p>
-        These legal battles are costly, and Sarah has lost her primary sources of income. 
-        If you believe in the principles of free speech, informed consent, and open 
-        scientific inquiry, consider contributing to her legal defense by sending an 
-        Interac e-transfer to 
-        <a href="mailto:sarah4freedom@gmail.com">sarah4freedom@gmail.com</a> 
-        or by donating to her GiveSendGo campaign.
+        These legal battles are costly, and Sarah has lost her primary sources of 
+        income. If you believe in the principles of free speech, informed consent, 
+        and open scientific inquiry, consider contributing to her legal defense. 
+        For Interac e-transfers, please use your online banking and send to 
+        <strong>sarah4freedom@gmail.com</strong>.
       </p>
       <a class="donate-button" 
          href="https://www.givesendgo.com/ThepeoplevstheEmergenciesAct" 
