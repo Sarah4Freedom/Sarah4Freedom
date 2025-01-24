@@ -62,16 +62,20 @@
       color: #0066cc;
     }
 
-    /* Photo Gallery/Images Section */
-    .photos {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+    /* Emergencies Act Challenge with Framed Images */
+    .framed-content {
+      display: flex;          /* Lay out images & text side by side */
+      flex-wrap: wrap;        /* Wrap if screen is narrow */
+      align-items: flex-start; /* Align items at the top */
+      gap: 20px;              /* Space between images and text */
     }
-    .photos img {
-      max-width: 32%;
+    .side-image {
+      width: 200px;           /* Adjust as needed */
+      max-width: 100%;
       border-radius: 5px;
-      object-fit: cover;
+    }
+    .text-container {
+      flex: 1;                /* Fill remaining horizontal space */
     }
 
     /* Footer / Links */
@@ -121,48 +125,54 @@
         as a union leader. She became a vocal critic of certain COVID-19 policies, believing that lockdowns 
         and mandates were causing more harm than good. After speaking publicly and challenging the official 
         narrative, she faced backlash, lost her nursing positions, and is now in a legal battle to defend 
-        her right—and the right of all healthcare professionals—to speak freely.
+        her right—and the right of all healthcare professionals—to speak freely, promote dialogue and debate, and to defend the principle of informed consent
       </p>
     </div>
 
-    <!-- EMERGENCIES ACT CASE -->
+    <!-- EMERGENCIES ACT CHALLENGE WITH FRAMED IMAGES -->
     <div class="section">
       <h2>Emergencies Act Challenge</h2>
-      <p>
-        In early 2022, Sarah and other members of the group 
-        <strong>Canadian Frontline Nurses</strong> joined the peaceful Freedom Convoy protests 
-        in Ottawa. Prime Minister Trudeau invoked the Emergencies Act, allowing banks to freeze 
-        protestors’ accounts without due process. Believing this was an unconstitutional use of 
-        power designed to silence lawful dissent, Sarah’s group became one of the first to 
-        challenge the invocation in Federal Court. The fight continues on appeal, where Sarah 
-        seeks to reaffirm Canadians’ fundamental freedoms and expose the political motives 
-        behind the government’s extreme measures.
-      </p>
+      <div class="framed-content">
+        <img 
+          src="LEFT_IMAGE_PATH.jpg" 
+          alt="Protest Photo Left" 
+          class="side-image"
+        />
+        <div class="text-container">
+          <p>
+            In January 2022, Sarah and other members of 
+            <strong>Canadian Frontline Nurses</strong> joined the peaceful Freedom 
+            Convoy protests in Ottawa. Canadian Frontline Nurses was recognized as a participating group in the Freedom Convoy.  When Prime Minister Trudeau invoked the 
+            Emergencies Act, it allowed banks to freeze protesters’ accounts 
+            without due process—an unprecedented and controversial move. Believing 
+            this was an unconstitutional overreach of power designed to silence 
+            lawful dissent, Sarah’s group was the first to challenge the 
+            invocation in Federal Court. Although the government eventually 
+            revoked the emergency declaration, the fight continues on appeal, 
+            where Sarah seeks to defend Canadians’ fundamental freedoms and 
+            expose the political motivations behind these extreme measures. Canadian Frontline Nurses seeks to represent the perspective of the protestors. Sarah and her group wish to set the record straight: the protestors were not fringe racists extremists and terrorists with unacceptable views as the government labelled them, but patriotic Canadians from different backgrounds who love this country and its values and sought to peacefully express their dissent with a view to encouraging the government to end the divisiveness of COVID-19 mandates and restrictions, and the divisiveness caused by slurring groups of Canadians whose views and agenda did not agree with Trudeau's. The government is seeking to silence that voice in court and characterize these patriotic Canadians as ideologically motivated violent extremists who posed a serious threat to the national security of Canada.
+          </p>
+        </div>
+        <img 
+          src="RIGHT_IMAGE_PATH.jpg" 
+          alt="Protest Photo Right" 
+          class="side-image"
+        />
+      </div>
     </div>
 
     <!-- COLLEGE OF NURSES CASE -->
     <div class="section">
       <h2>College of Nurses Discipline Case</h2>
       <p>
-        The College of Nurses of Ontario (CNO) is attempting to discipline Sarah over 
-        social media posts and a public speech that questioned public health guidelines. 
-        The CNO alleges her information was “false, misleading, or inaccurate.” Sarah argues 
-        that her views are backed by research and expert testimony—testimony the College has 
-        refused to hear. She is now awaiting the outcome of a lengthy hearing and is prepared 
-        to appeal any decision that undermines a nurse’s right to engage in open scientific 
-        dialogue and free expression.
+        The College of Nurses of Ontario (CNO) is attempting to discipline Sarah over a handful of
+        social media posts and a public speech that questioned public health guidelines during COVID-19. 
+        The CNO alleges her information was “false, misleading, or inaccurate.” Sarah 
+        argues that her views contribute to the social and scientific debate about the measures that were deployed during the COVID-19 pandemic, and that the statements she made or shared are backed by research and expert testimony—testimony 
+        the College has refused to hear. She is now awaiting the outcome of a lengthy 
+        (30 day) hearing and is prepared to appeal any decision that undermines a nurse’s right 
+        to engage in open scientific dialogue and free expression.
       </p>
-    </div>
-
-    <!-- PHOTO GALLERY (OPTIONAL) -->
-    <div class="section">
-      <h2>Photo Highlights</h2>
-      <div class="photos">
-        <!-- Add or remove images as needed -->
-        <img src="PATH_TO_PHOTO_1.jpg" alt="Photo 1 Description" />
-        <img src="PATH_TO_PHOTO_2.jpg" alt="Photo 2 Description" />
-        <img src="PATH_TO_PHOTO_3.jpg" alt="Photo 3 Description" />
-      </div>
     </div>
 
     <!-- LINKS & DONATIONS -->
@@ -193,3 +203,4 @@
   </div>
 </body>
 </html>
+
