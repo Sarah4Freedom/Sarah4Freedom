@@ -31,7 +31,7 @@
     }
     p {
       margin-bottom: 1em;
-      text-align: justify;
+      text-align: justify; /* Default for paragraphs throughout the site */
     }
 
     /* CONTAINER */
@@ -53,13 +53,16 @@
       border-radius: 8px;
       margin-bottom: 20px;
     }
+    /* Force paragraphs in hero to be centered, overriding the global p style */
+    .hero p {
+      text-align: center !important;
+    }
     .hero h1 {
       margin: 20px 0;
       color: #b30000;         /* Deeper red for main title */
       font-size: 2em;
     }
-    /* Center the text specifically under the hero title */
-    .hero .hero-subtitle {
+    .hero-subtitle {
       text-align: center;
       color: #444;
       font-weight: bold;
@@ -115,18 +118,19 @@
     /* TOP CALL TO ACTION */
     .top-cta {
       margin-top: 20px;
-      text-align: center; /* Center content inside top CTA */
+      text-align: center;
     }
     .donate-button {
       display: inline-block;
-      margin: 20px 10px 0;
-      padding: 12px 24px;
+      margin: 10px 5px 0;
+      padding: 10px 20px;
       background-color: #b30000;
       color: #fff;
       font-weight: bold;
       border-radius: 5px;
       text-decoration: none;
       transition: background-color 0.3s;
+      font-size: 0.9em;
     }
     .donate-button:hover {
       background-color: #870000;
@@ -192,13 +196,21 @@
 
       <!-- Top Call to Action -->
       <div class="top-cta">
-        <p style="font-weight:bold;">
+        <p style="font-weight:bold; margin-bottom: 8px;">
           Help Sarah defend free speech and medical autonomy.
+        </p>
+        <p style="max-width: 600px; margin: 0 auto;">
+          <strong>Preferred method:</strong> Please use your online banking to 
+          send an Interac e-transfer to 
+          <strong>sarah4freedom@gmail.com</strong>.
+        </p>
+        <p style="margin-top: 10px; font-size: 0.9em;">
+          If you prefer an alternative or are located outside Canada, you can donate via:
         </p>
         <a class="donate-button" 
            href="https://www.givesendgo.com/ThepeoplevstheEmergenciesAct" 
            target="_blank">
-          Donate via GiveSendGo
+          Alternate Donation Option: GiveSendGo
         </a>
       </div>
     </div>
@@ -212,10 +224,20 @@
         residents in long-term care, and advocating as a union leader. She became a vocal 
         critic of certain COVID-19 policies, believing that lockdowns and mandates were 
         causing more harm than good. After speaking publicly and challenging the official 
-        narrative, she faced backlash, lost her nursing positions, and is now in a legal 
-        battle to defend her right—and the right of all healthcare professionals—to speak 
-        freely, promote dialogue and debate, and to defend the principle of informed 
-        consent.
+        narrative, she faced backlash and lost her nursing positions.
+      </p>
+      <p>
+        Sarah founded <strong>Nurses Against Lockdowns</strong>, an advocacy group focused 
+        on raising awareness about the detrimental social and psychological effects of 
+        restrictive COVID-19 policies. She later co-founded 
+        <strong>Canadian Frontline Nurses</strong>, which organized rallies and events 
+        supporting healthcare workers opposed to vaccine mandates, and promoted open 
+        scientific dialogue on the measures implemented by public health authorities.
+      </p>
+      <p>
+        Sarah is now in a legal battle to defend her right—and the right of all healthcare 
+        professionals—to speak freely, promote dialogue and debate, and uphold the principle 
+        of informed consent.
       </p>
     </div>
 
@@ -304,13 +326,14 @@
         These legal battles are costly, and Sarah has lost her primary sources of 
         income. If you believe in the principles of free speech, informed consent, 
         and open scientific inquiry, consider contributing to her legal defense. 
-        For Interac e-transfers, please use your online banking and send to 
-        <strong>sarah4freedom@gmail.com</strong>.
+        <br><br>
+        <strong>Interac E-Transfer (preferred):</strong> Please use your online banking 
+        and send to <strong>sarah4freedom@gmail.com</strong>.
       </p>
       <a class="donate-button" 
          href="https://www.givesendgo.com/ThepeoplevstheEmergenciesAct" 
          target="_blank">
-        Donate via GiveSendGo
+        Alternate Donation Option: GiveSendGo
       </a>
 
       <!-- SOCIAL MEDIA LINKS -->
