@@ -68,6 +68,9 @@
       list-style: none;
       display: flex;
       gap: 25px;
+      /* For very narrow screens, allow wrapping. */
+      flex-wrap: wrap;
+      justify-content: center;
     }
     nav li {
       display: inline-block;
@@ -191,7 +194,7 @@
       margin: 40px auto;
       padding: 0 20px;
       max-width: 1000px;
-      margin-right: 340px; /* Enough space to avoid overlap (270px + 50-70px buffer) */
+      margin-right: 340px; /* Enough space to avoid overlap with donation box */
     }
     .section {
       margin-bottom: 40px;
@@ -227,9 +230,11 @@
       border-top: 1px solid #eee;
     }
 
-    /* MEDIA QUERY FOR NARROW SCREENS */
+    /* MEDIA QUERIES */
+
+    /* 1) For screens <= 1200px, donation box becomes static
+       and container margin-right is removed. */
     @media (max-width: 1200px) {
-      /* Donation box becomes non-fixed or resizes so it doesn't overlap text */
       .donation-info {
         position: static;
         margin: 20px auto;
@@ -238,9 +243,32 @@
         left: 0; 
         right: 0;
       }
-      /* Remove the extra right margin so text can fill the screen */
       .container {
         margin-right: auto;
+      }
+    }
+
+    /* 2) For mobile (<=768px), further tweaks for slideshow & text sizing if needed */
+    @media (max-width: 768px) {
+      /* Shrink slideshow for small phones */
+      .slideshow-container {
+        width: 160px;
+        height: 160px;
+      }
+      /* Possibly reduce banner padding */
+      .banner {
+        padding: 20px 10px;
+      }
+      .banner h1 {
+        font-size: 1.6em;
+      }
+      .banner .subtitle {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+      }
+      /* Donation info narrower in flow */
+      .donation-info {
+        width: 90%;
       }
     }
   </style>
@@ -260,7 +288,7 @@
     </div>
   </nav>
 
-  <!-- DONATION INFO (FIXED ON WIDE SCREENS, becomes static on narrow) -->
+  <!-- DONATION INFO (FIXED ON WIDE, static on smaller) -->
   <div class="donation-info">
     <h3>Support Sarah</h3>
     <p>
