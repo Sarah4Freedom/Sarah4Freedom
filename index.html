@@ -137,7 +137,7 @@
       color: #666;
     }
 
-    /* BANNER SECTION (TITLE, SUBTITLE, HORIZONTAL GALLERY) */
+    /* BANNER SECTION (TITLE, SUBTITLE, SLIDESHOW) */
     .banner {
       text-align: center;
       padding: 40px 20px; 
@@ -154,82 +154,58 @@
       color: #444;
     }
 
-    /* RESPONSIVE GRID IMAGE GALLERY STYLES */
-    .responsive-grid-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 10px;
-      padding: 10px 0;
-      background-color: #fff; /* Optional: Match your banner background */
+    /* SLIDESHOW STYLES */
+    .slideshow-container {
+      position: relative;
+      width: 400px;
+      height: 600px;
+      margin: 0 auto 30px auto; /* Center horizontally and add bottom margin */
+      overflow: hidden;
     }
-
-    .responsive-grid-gallery img {
+    .slide {
+      position: absolute;
       width: 100%;
-      height: 400px;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      animation: fade 21s infinite;
+    }
+    .slide img {
+      width: 100%;
+      height: 100%;
       object-fit: cover; /* Prevents image distortion */
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      max-width: 300px;
-      max-height: 400px;
-      width: 100%;
-      height: auto;
     }
 
-    /* Responsive Adjustments */
-    @media (max-width: 1200px) {
-      .responsive-grid-gallery img {
-        max-width: 250px;
-        height: 350px;
-      }
+    /* Keyframes for fade transition */
+    @keyframes fade {
+      0% { opacity: 0; }
+      5% { opacity: 1; }
+      20% { opacity: 1; }
+      25% { opacity: 0; }
+      100% { opacity: 0; }
     }
 
-    @media (max-width: 992px) {
-      .responsive-grid-gallery {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      }
-      
-      .responsive-grid-gallery img {
-        max-width: 200px;
-        height: 300px;
-      }
+    /* Animation delays for each slide */
+    .slide:nth-child(1) {
+      animation-delay: 0s;
     }
-
-    @media (max-width: 768px) {
-      .responsive-grid-gallery {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      }
-      
-      .responsive-grid-gallery img {
-        max-width: 150px;
-        height: 250px;
-      }
-      
-      /* Further adjust banner padding */
-      .banner {
-        padding: 20px 10px;
-      }
-      .banner h1 {
-        font-size: 1.6em;
-      }
-      .banner .subtitle {
-        font-size: 1.2em;
-        margin-bottom: 20px;
-      }
-      /* Donation info narrower in flow on mobile */
-      .donation-info {
-        width: 90%;
-      }
+    .slide:nth-child(2) {
+      animation-delay: 3s;
     }
-
-    @media (max-width: 480px) {
-      .responsive-grid-gallery {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      }
-      
-      .responsive-grid-gallery img {
-        max-width: 120px;
-        height: 200px;
-      }
+    .slide:nth-child(3) {
+      animation-delay: 6s;
+    }
+    .slide:nth-child(4) {
+      animation-delay: 9s;
+    }
+    .slide:nth-child(5) {
+      animation-delay: 12s;
+    }
+    .slide:nth-child(6) {
+      animation-delay: 15s;
+    }
+    .slide:nth-child(7) {
+      animation-delay: 18s;
     }
 
     /* MAIN CONTENT SECTIONS */
@@ -290,6 +266,11 @@
         margin-right: auto;
       }
     }
+    @media (max-width: 992px) {
+      .freedom-gallery img {
+        max-width: 350px;
+      }
+    }
     @media (max-width: 768px) {
       /* Further adjust banner padding */
       .banner {
@@ -305,6 +286,31 @@
       /* Donation info narrower in flow on mobile */
       .donation-info {
         width: 90%;
+      }
+      /* Adjust slideshow size for smaller screens */
+      .slideshow-container {
+        width: 100%;
+        height: auto;
+        max-width: 400px;
+        margin-bottom: 20px;
+      }
+      .slideshow-container img {
+        height: auto;
+        max-height: 400px;
+      }
+    }
+    @media (max-width: 480px) {
+      /* Further adjust slideshow size for very small screens */
+      .slideshow-container {
+        width: 100%;
+        height: auto;
+        max-width: 300px;
+      }
+      .slideshow-container img {
+        max-height: 300px;
+      }
+      .freedom-gallery img {
+        width: 100%;
       }
     }
   </style>
@@ -344,19 +350,33 @@
     </p>
   </div>
 
-  <!-- BANNER SECTION (TITLE, HORIZONTAL GALLERY, SUBTITLE) -->
+  <!-- BANNER SECTION (TITLE, SLIDESHOW, SUBTITLE) -->
   <section id="banner" class="banner">
     <h1>Sarah for Freedom</h1>
     
-    <!-- Responsive Grid Image Gallery -->
-    <div class="responsive-grid-gallery">
-      <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_1.jpg?raw=true" alt="Sarah's Profile 1" loading="lazy" />
-      <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_2.jpg?raw=true" alt="Sarah's Profile 2" loading="lazy" />
-      <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_3.jpg?raw=true" alt="Sarah's Profile 3" loading="lazy" />
-      <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_4.jpg?raw=true" alt="Sarah's Profile 4" loading="lazy" />
-      <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_5.jpg?raw=true" alt="Sarah's Profile 5" loading="lazy" />
-      <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_6.jpg?raw=true" alt="Sarah's Profile 6" loading="lazy" />
-      <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_7.jpg?raw=true" alt="Sarah's Profile 7" loading="lazy" />
+    <!-- Slideshow -->
+    <div class="slideshow-container">
+      <div class="slide">
+        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_1.jpg?raw=true" alt="Sarah's Profile 1" loading="lazy" />
+      </div>
+      <div class="slide">
+        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_2.jpg?raw=true" alt="Sarah's Profile 2" loading="lazy" />
+      </div>
+      <div class="slide">
+        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_3.jpg?raw=true" alt="Sarah's Profile 3" loading="lazy" />
+      </div>
+      <div class="slide">
+        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_4.jpg?raw=true" alt="Sarah's Profile 4" loading="lazy" />
+      </div>
+      <div class="slide">
+        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_5.jpg?raw=true" alt="Sarah's Profile 5" loading="lazy" />
+      </div>
+      <div class="slide">
+        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_6.jpg?raw=true" alt="Sarah's Profile 6" loading="lazy" />
+      </div>
+      <div class="slide">
+        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_7.jpg?raw=true" alt="Sarah's Profile 7" loading="lazy" />
+      </div>
     </div>
     
     <div class="subtitle">
