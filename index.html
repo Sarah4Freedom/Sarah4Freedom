@@ -137,7 +137,7 @@
       color: #666;
     }
 
-    /* BANNER SECTION (TITLE, SUBTITLE, SCROLLING BANNER) */
+    /* BANNER SECTION (TITLE, SUBTITLE, HORIZONTAL GALLERY) */
     .banner {
       text-align: center;
       padding: 40px 20px; 
@@ -154,58 +154,55 @@
       color: #444;
     }
 
-    /* SCROLLING BANNER STYLES */
-    .scrolling-banner {
+    /* HORIZONTAL IMAGE GALLERY STYLES */
+    .horizontal-gallery {
       width: 100%;
-      overflow: hidden;
+      overflow-x: auto; /* Enables horizontal scrolling if necessary */
       background-color: #fff; /* Optional: Match your banner background */
       box-sizing: border-box;
       padding: 10px 0; /* Optional: Add some padding */
     }
     
-    .scrolling-banner-content {
+    .gallery-container {
       display: flex;
-      width: calc(200px * 14); /* 7 images duplicated = 14 images */
-      animation: scroll-left 35s linear infinite;
+      justify-content: center;
+      align-items: center;
+      gap: 0; /* No space between images */
     }
     
-    .scrolling-banner-content img {
+    .gallery-container img {
       width: 200px;
       height: 350px;
-      object-fit: cover; /* Prevent image distortion */
-      flex-shrink: 0; /* Prevent images from shrinking */
+      object-fit: cover; /* Prevents image distortion */
+      flex-shrink: 0; /* Prevents images from shrinking */
+      margin-right: 0; /* Ensures no space between images */
     }
     
-    /* Keyframes for scrolling from left to right */
-    @keyframes scroll-left {
-      0% {
-        transform: translateX(-1400px); /* Start position */
-      }
-      100% {
-        transform: translateX(0); /* End position */
-      }
+    /* Remove the right margin for the last image */
+    .gallery-container img:last-child {
+      margin-right: 0;
+    }
+    
+    /* Hide scrollbar for WebKit browsers */
+    .horizontal-gallery::-webkit-scrollbar {
+      display: none;
+    }
+    
+    /* Optional: Add smooth scrolling */
+    .horizontal-gallery {
+      scroll-behavior: smooth;
     }
     
     /* Responsive Adjustments */
     @media (max-width: 768px) {
-      .scrolling-banner-content {
-        width: calc(200px * 14);
-        animation: scroll-left 50s linear infinite; /* Slower speed on smaller screens */
-      }
-      
-      .scrolling-banner-content img {
+      .gallery-container img {
         width: 150px;
         height: 250px;
       }
     }
     
     @media (max-width: 480px) {
-      .scrolling-banner-content {
-        width: calc(150px * 14);
-        animation: scroll-left 70s linear infinite; /* Even slower on very small screens */
-      }
-      
-      .scrolling-banner-content img {
+      .gallery-container img {
         width: 120px;
         height: 200px;
       }
@@ -270,7 +267,7 @@
       }
     }
     @media (max-width: 768px) {
-      /* Further shrink scrolling banner */
+      /* Further adjust banner padding */
       .banner {
         padding: 20px 10px;
       }
@@ -323,28 +320,20 @@
     </p>
   </div>
 
-  <!-- BANNER SECTION (TITLE, SCROLLING BANNER, SUBTITLE) -->
+  <!-- BANNER SECTION (TITLE, HORIZONTAL GALLERY, SUBTITLE) -->
   <section id="banner" class="banner">
     <h1>Sarah for Freedom</h1>
     
-    <!-- Scrolling Banner -->
-    <div class="scrolling-banner">
-      <div class="scrolling-banner-content">
-        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_1.jpg?raw=true" alt="Sarah's Profile 1" />
-        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_2.jpg?raw=true" alt="Sarah's Profile 2" />
-        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_3.jpg?raw=true" alt="Sarah's Profile 3" />
-        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_4.jpg?raw=true" alt="Sarah's Profile 4" />
-        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_5.jpg?raw=true" alt="Sarah's Profile 5" />
-        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_6.jpg?raw=true" alt="Sarah's Profile 6" />
-        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_7.jpg?raw=true" alt="Sarah's Profile 7" />
-        <!-- Duplicate images for seamless scrolling -->
-        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_1.jpg?raw=true" alt="Sarah's Profile 1" />
-        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_2.jpg?raw=true" alt="Sarah's Profile 2" />
-        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_3.jpg?raw=true" alt="Sarah's Profile 3" />
-        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_4.jpg?raw=true" alt="Sarah's Profile 4" />
-        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_5.jpg?raw=true" alt="Sarah's Profile 5" />
-        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_6.jpg?raw=true" alt="Sarah's Profile 6" />
-        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_7.jpg?raw=true" alt="Sarah's Profile 7" />
+    <!-- Horizontal Image Gallery -->
+    <div class="horizontal-gallery">
+      <div class="gallery-container">
+        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_1.jpg?raw=true" alt="Sarah's Profile 1" loading="lazy" />
+        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_2.jpg?raw=true" alt="Sarah's Profile 2" loading="lazy" />
+        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_3.jpg?raw=true" alt="Sarah's Profile 3" loading="lazy" />
+        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_4.jpg?raw=true" alt="Sarah's Profile 4" loading="lazy" />
+        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_5.jpg?raw=true" alt="Sarah's Profile 5" loading="lazy" />
+        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_6.jpg?raw=true" alt="Sarah's Profile 6" loading="lazy" />
+        <img src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_7.jpg?raw=true" alt="Sarah's Profile 7" loading="lazy" />
       </div>
     </div>
     
@@ -498,4 +487,3 @@
   </footer>
 </body>
 </html>
-
