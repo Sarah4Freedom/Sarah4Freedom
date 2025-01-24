@@ -83,10 +83,10 @@
       text-decoration: underline;
     }
 
-    /* FIXED SUPPORT SARAH BOX */
+    /* FIXED DONATION BOX ON WIDE SCREENS */
     .donation-info {
-      position: fixed; /* stays on screen */
-      top: 100px;      /* so it doesn't overlap the nav */
+      position: fixed;
+      top: 100px; /* So it doesn't overlap the nav */
       right: 20px;
       width: 270px;
       background: rgba(255, 255, 255, 0.8);
@@ -95,7 +95,7 @@
       padding: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       text-align: left;
-      z-index: 1000; /* ensure on top of content */
+      z-index: 1000; /* on top of main content */
     }
     .donation-info h3 {
       color: #b30000;
@@ -114,7 +114,7 @@
     }
     .donation-info a {
       text-decoration: underline;
-      color: #0645AD;  /* match link color */
+      color: #0645AD;  /* link color */
     }
     .donation-info hr {
       margin: 6px 0;
@@ -128,7 +128,7 @@
       color: #666;
     }
 
-    /* BANNER SECTION (TITLE + SUBTITLE + SLIDESHOW) */
+    /* BANNER SECTION (TITLE, SUBTITLE, SLIDESHOW) */
     .banner {
       text-align: center;
       padding: 40px 20px; 
@@ -141,7 +141,7 @@
     }
     .banner .subtitle {
       margin-bottom: 30px;
-      font-size: 1.5em;   /* roughly same size as body headers, as requested */
+      font-size: 1.5em;   /* roughly same size as body headers */
       color: #444;
     }
 
@@ -152,7 +152,6 @@
       height: 200px;
       margin: 0 auto; /* center the slideshow */
       overflow: hidden;
-      /* No border or frame */
     }
     .slide {
       position: absolute;
@@ -165,7 +164,6 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      /* If you want circles: border-radius: 50%; */
     }
     @keyframes slideshow {
       0%   { opacity: 1; }
@@ -189,9 +187,11 @@
 
     /* MAIN CONTENT SECTIONS */
     .container {
-      max-width: 1000px;
+      /* Reserve space on the right for donation box on wide screens */
       margin: 40px auto;
       padding: 0 20px;
+      max-width: 1000px;
+      margin-right: 340px; /* Enough space to avoid overlap (270px + 50-70px buffer) */
     }
     .section {
       margin-bottom: 40px;
@@ -226,6 +226,23 @@
       color: #666;
       border-top: 1px solid #eee;
     }
+
+    /* MEDIA QUERY FOR NARROW SCREENS */
+    @media (max-width: 1200px) {
+      /* Donation box becomes non-fixed or resizes so it doesn't overlap text */
+      .donation-info {
+        position: static;
+        margin: 20px auto;
+        width: 80%; 
+        max-width: 400px;
+        left: 0; 
+        right: 0;
+      }
+      /* Remove the extra right margin so text can fill the screen */
+      .container {
+        margin-right: auto;
+      }
+    }
   </style>
 </head>
 
@@ -243,7 +260,7 @@
     </div>
   </nav>
 
-  <!-- FIXED DONATION INFO BOX ON THE RIGHT -->
+  <!-- DONATION INFO (FIXED ON WIDE SCREENS, becomes static on narrow) -->
   <div class="donation-info">
     <h3>Support Sarah</h3>
     <p>
@@ -269,7 +286,7 @@
     <h1>Sarah for Freedom</h1>
     <div class="subtitle">Advocating for Informed Consent, Free Speech &amp; Constitutional Freedoms</div>
     
-    <!-- Slideshow below the subtitle -->
+    <!-- Slideshow -->
     <div class="slideshow-container">
       <div class="slide">
         <img src="IMAGE_1.jpg" alt="Sarah's Profile 1">
@@ -426,6 +443,5 @@
   <footer>
     &copy; 2025 Sarah for Freedom. All rights reserved.
   </footer>
-
 </body>
 </html>
