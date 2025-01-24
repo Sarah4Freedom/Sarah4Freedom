@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sarah for Freedom</title>
   <style>
-    /* RESET / GLOBAL STYLES */
+    /* RESET & GLOBAL STYLES */
     * {
       margin: 0;
       padding: 0;
@@ -13,7 +13,7 @@
     }
     html {
       scroll-behavior: smooth;
-      /* Ensures anchored sections appear below the sticky nav (60px high). */
+      /* Account for sticky nav (60px) when jumping to anchors */
       scroll-padding-top: 70px;
     }
     body {
@@ -22,14 +22,20 @@
       line-height: 1.6;
       background-color: #f8f8f8;
     }
+    /* LINKS */
     a {
-      color: #b30000;  /* Red accent */
+      color: #0645AD;  /* Classic hyperlink blue */
       text-decoration: none;
       transition: color 0.2s ease;
     }
     a:hover {
-      color: #870000;
+      color: #0b3e8c;  /* Slightly darker on hover */
       text-decoration: underline;
+    }
+    /* Special class for Sarah's email to be black */
+    .email-link {
+      color: #000 !important; /* Force black text */
+      text-decoration: none;
     }
     h1, h2, h3 {
       margin-bottom: 0.5em;
@@ -39,7 +45,7 @@
       text-align: justify;
     }
 
-    /* STICKY NAV */
+    /* STICKY NAV (unchanged from before) */
     nav {
       position: sticky;
       top: 0;
@@ -68,47 +74,45 @@
       font-weight: bold;
       font-size: 0.95em;
       padding: 8px 0;
-      color: #b30000;
+      color: #b30000; /* Keeping the nav links in the red accent */
+      text-decoration: none;
+    }
+    nav a:hover {
+      color: #870000;
+      text-decoration: underline;
     }
 
-    /* HERO SECTION */
+    /* HERO SECTION WITH BACKGROUND SLIDESHOW */
     .hero {
       position: relative;
-      min-height: 60vh;
-      /* Parallax-style background; replace with your actual image: */
-      background: url("https://via.placeholder.com/1920x1080/ffeded/ffffff?text=Your+Background+Image") 
-                  no-repeat center center fixed;
-      background-size: cover;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      /* Reduced overall padding for minimal “frame”: */
-      padding: 20px 10px;
+      width: 100%;
+      height: 60vh;  /* Adjust as desired for hero size */
+      min-height: 400px; /* Ensure a reasonable minimum if the viewport is short */
+      overflow: hidden;  /* Hide slideshow images outside container */
     }
-
-    .slideshow-container {
-      /* Removed the border, box-shadow, and border-radius for minimal framing: */
-      position: relative;
-      width: 150px;
-      height: 150px;
-      margin: 0 auto 10px;
-      overflow: hidden;
-    }
-    .slide {
+    /* The slideshow container is absolutely placed as a background layer */
+    .slideshow-bg {
       position: absolute;
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%;
+      z-index: 0;  /* behind any content overlays */
+    }
+    /* Each image inside the slideshow will be absolutely positioned and faded in/out */
+    .slide-bg {
+      position: absolute;
+      top: 0; left: 0;
       width: 100%;
       height: 100%;
+      background-position: center;
+      background-size: cover;
       opacity: 0;
-      transition: opacity 1s ease-in-out;
+      animation: slidefade 15s infinite;
     }
-    .slide img {
-      /* Keep images themselves circular if you like, or remove border-radius for square images: */
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-    @keyframes slideshow {
+    /* KEYFRAMES for a 3-image rotation, each 5s visible in a 15s cycle.
+       If you have more images, adjust timing or add steps. */
+    @keyframes slidefade {
       0%   { opacity: 1; }
       33%  { opacity: 1; }
       33.1%{ opacity: 0; }
@@ -116,19 +120,43 @@
       66.1%{ opacity: 1; }
       100% { opacity: 1; }
     }
-    .slide:nth-child(1) {
-      animation: slideshow 9s infinite;
+    .slide-bg:nth-child(1) {
+      animation-delay: 0s;
     }
-    .slide:nth-child(2) {
-      animation: slideshow 9s infinite;
-      animation-delay: 3s;
+    .slide-bg:nth-child(2) {
+      animation-delay: 5s;
     }
-    .slide:nth-child(3) {
-      animation: slideshow 9s infinite;
-      animation-delay: 6s;
+    .slide-bg:nth-child(3) {
+      animation-delay: 10s;
     }
 
-    /* DONATION INFO CARVE-OUT */
+    /* HERO CONTENT OVERLAY BOX (LEFT) */
+    .hero-content {
+      position: absolute;
+      z-index: 1; /* on top of background */
+      left: 5%;   /* left-of-center positioning */
+      top: 50%;
+      transform: translateY(-50%); /* center vertically */
+      background: rgba(255, 255, 255, 0.7);
+      padding: 20px;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+    }
+    .hero-content h1 {
+      color: #b30000;
+      margin-bottom: 0.5em;
+      font-size: 1.6em;
+      text-align: center;
+    }
+    .hero-content p {
+      text-align: center; 
+      color: #444;
+      margin-bottom: 1em;
+      line-height: 1.4;
+    }
+
+    /* DONATION INFO (top-right corner) */
     .donation-info {
       position: absolute;
       top: 20px; 
@@ -140,6 +168,7 @@
       padding: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       text-align: left;
+      z-index: 2; /* Above slideshow background, can be behind or above hero-content if desired */
     }
     .donation-info h3 {
       color: #b30000;
@@ -159,6 +188,7 @@
     .donation-info a {
       font-weight: normal;
       text-decoration: underline;
+      color: #0645AD;  /* match link color */
     }
     .donation-info hr {
       margin: 6px 0;
@@ -172,22 +202,7 @@
       color: #666;
     }
 
-    /* MAIN HEADING IN HERO */
-    .hero-heading {
-      margin-top: 10px;
-      color: #b30000;
-      font-size: 1.6em;
-      text-align: center;
-    }
-    .hero-subtitle {
-      text-align: center;
-      color: #444;
-      margin-top: 5px;
-      margin-bottom: 20px;
-      line-height: 1.4;
-    }
-
-    /* MAIN CONTENT SECTIONS */
+    /* CONTENT SECTIONS */
     .container {
       max-width: 1000px;
       margin: 40px auto;
@@ -231,7 +246,7 @@
 
 <body>
 
-  <!-- STICKY NAV -->
+  <!-- NAVIGATION (unchanged) -->
   <nav>
     <div class="nav-container">
       <ul>
@@ -244,14 +259,22 @@
     </div>
   </nav>
 
-  <!-- HERO SECTION -->
+  <!-- HERO with BACKGROUND SLIDESHOW -->
   <section id="hero" class="hero">
-    <!-- Donation Info (top-right corner) -->
+    <!-- Slideshow Background Container -->
+    <div class="slideshow-bg">
+      <!-- Replace each child .slide-bg with your actual portrait images -->
+      <div class="slide-bg" style="background-image: url('IMAGE_1.jpg');"></div>
+      <div class="slide-bg" style="background-image: url('IMAGE_2.jpg');"></div>
+      <div class="slide-bg" style="background-image: url('IMAGE_3.jpg');"></div>
+    </div>
+
+    <!-- Donation Info Box (Top-Right) -->
     <div class="donation-info">
       <h3>Support Sarah</h3>
       <p>
         <strong>Interac E-Transfer:</strong><br/>
-        Send to <strong>sarah4freedom@gmail.com</strong>
+        Send to <strong class="email-link">sarah4freedom@gmail.com</strong>
       </p>
       <hr/>
       <p>
@@ -267,21 +290,10 @@
       </p>
     </div>
 
-    <div style="text-align:center;">
-      <!-- Slideshow WITHOUT border/frame -->
-      <div class="slideshow-container">
-        <div class="slide">
-          <img src="IMAGE_1.jpg" alt="Sarah's Profile 1" />
-        </div>
-        <div class="slide">
-          <img src="IMAGE_2.jpg" alt="Sarah's Profile 2" />
-        </div>
-        <div class="slide">
-          <img src="IMAGE_3.jpg" alt="Sarah's Profile 3" />
-        </div>
-      </div>
-      <h1 class="hero-heading">Sarah for Freedom</h1>
-      <p class="hero-subtitle">
+    <!-- Hero Text Overlay (Left) -->
+    <div class="hero-content">
+      <h1>Sarah for Freedom</h1>
+      <p>
         Advocating for Informed Consent,<br/> 
         Free Speech &amp; Constitutional Freedoms
       </p>
@@ -324,4 +336,114 @@
         <img src="LEFT_IMAGE_PATH.jpg" alt="Freedom Convoy Left" />
         <img 
           src="https://upload.wikimedia.org/wikipedia/commons/8/8b/Freedom_Convoy_2022%2C_Ottawa%2C_February_12_%2818%29.jpg" 
-          alt="Freedom 
+          alt="Freedom Convoy Right" 
+        />
+      </div>
+      <p>
+        In January 2022, Sarah and other members of 
+        <strong>Canadian Frontline Nurses</strong> joined the peaceful Freedom 
+        Convoy protests in Ottawa. Canadian Frontline Nurses was recognized as a 
+        participating group in the Freedom Convoy. When Prime Minister Trudeau 
+        invoked the Emergencies Act, it allowed banks to freeze protesters’ accounts 
+        without due process—an unprecedented and controversial move. Believing 
+        this was an unconstitutional overreach of power designed to silence 
+        lawful dissent, Sarah’s group was the first to challenge the invocation 
+        in Federal Court. Although the government eventually revoked the emergency 
+        declaration, the fight continues on appeal, where Sarah seeks to defend 
+        Canadians’ fundamental freedoms and expose the political motivations 
+        behind these extreme measures.
+      </p>
+      <p>
+        Canadian Frontline Nurses seeks to represent the perspective of the 
+        protestors, setting the record straight: they were not “fringe racists” 
+        or “terrorists with unacceptable views,” but rather patriotic Canadians 
+        from diverse backgrounds who peacefully expressed dissent. Their goal was 
+        to encourage the government to end divisive mandates and stop marginalizing 
+        Canadians for holding different viewpoints. In court, the government continues 
+        to characterize these demonstrators as violent extremists posing a serious 
+        threat to national security. Sarah’s legal battle challenges that narrative 
+        head-on.
+      </p>
+      <p>
+        If you are interested in observing the proceedings at the Federal Court of Appeal, 
+        which is scheduled to take place on February 4th and 5th, 2025, starting at 
+        9:30 AM EST, please 
+        <a href="YOUR_FEDERAL_COURT_LINK_HERE" 
+           target="_blank" 
+           rel="noopener noreferrer">
+          click this link
+        </a> 
+        to register for a public link to the stream. 
+        <strong>NOTE: Recording the hearing in any fashion (including screenshots) or 
+        disseminating the hearing is prohibited.</strong>
+        See <a href="https://www.fca-caf.ca/en/pages/hearings/how-to-watch-a-hearing" 
+        target="_blank" 
+        rel="noopener noreferrer">
+          this link
+        </a> for further information.
+      </p>
+    </section>
+
+    <!-- CNO CASE -->
+    <section id="cno-case" class="section">
+      <h2>College of Nurses Discipline Case</h2>
+      <p>
+        The College of Nurses of Ontario (CNO) is attempting to discipline Sarah over a 
+        handful of social media posts and a public speech that questioned public health 
+        guidelines during COVID-19. The CNO alleges her information was “false, 
+        misleading, or inaccurate.” Sarah argues that her views contribute to the 
+        social and scientific debate about the measures that were deployed during 
+        the COVID-19 pandemic, and that the statements she made or shared are backed 
+        by research and expert testimony—testimony the College has refused to hear. 
+        She is now awaiting the outcome of a 30-day hearing and is prepared to appeal 
+        any decision that undermines a nurse’s right to engage in open scientific 
+        dialogue and free expression.
+      </p>
+      <p>
+        Despite these challenges, Sarah remains committed to advocating for transparency, 
+        informed consent, and robust scientific debate within healthcare. She believes 
+        that professionals should not face punishment for respectfully questioning 
+        official policies that impact patient care and public health on a large scale. 
+      </p>
+    </section>
+
+    <!-- SUPPORT SECTION -->
+    <section id="support" class="section">
+      <h2>Get Involved &amp; Show Your Support</h2>
+      <p>
+        These legal battles are costly, and Sarah has lost her primary sources of 
+        income. If you believe in the principles of free speech, informed consent, 
+        and open scientific inquiry, consider contributing to her legal defense.
+      </p>
+      <p>
+        <strong>Interac E-Transfer (preferred):</strong><br/>
+        Please use your online banking and send to 
+        <strong class="email-link">sarah4freedom@gmail.com</strong>.
+      </p>
+      <p>
+        <strong>Alternate Donation Option (Outside Canada):</strong><br/>
+        <a href="https://www.givesendgo.com/ThepeoplevstheEmergenciesAct" target="_blank">
+          GiveSendGo
+        </a>
+      </p>
+      <p>
+        Thank you for standing with Sarah in her mission to uphold basic freedoms 
+        and scientific transparency in healthcare.
+      </p>
+      <p>    
+        <strong>Follow Sarah on Social Media:</strong><br/>
+        <a href="https://x.com/SarahChoujounia" target="_blank">Twitter/X</a> |
+        <a href="https://www.facebook.com/sarah.choujounian" target="_blank">Facebook</a> |
+        <a href="https://www.instagram.com/sarah_choujounian/" target="_blank">Instagram</a> |
+        <a href="https://www.tiktok.com/@sarahchoujounian" target="_blank">TikTok</a>
+      </p>
+    </section>
+
+  </div><!-- end container -->
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2025 Sarah for Freedom. All rights reserved.
+  </footer>
+</body>
+</html>
