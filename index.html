@@ -12,8 +12,9 @@
       box-sizing: border-box;
     }
     html {
+      /* Increase offset so anchored sections don't get cut off by taller nav */
       scroll-behavior: smooth;
-      scroll-padding-top: 70px; /* offset for the sticky nav */
+      scroll-padding-top: 80px;
     }
     body {
       font-family: "Helvetica Neue", Arial, sans-serif;
@@ -24,7 +25,7 @@
 
     /* LINKS */
     a {
-      color: #0645AD;  /* Classic hyperlink blue */
+      color: #0645AD; /* Classic hyperlink blue */
       text-decoration: none;
       transition: color 0.2s ease;
     }
@@ -38,7 +39,7 @@
       text-decoration: none;
     }
 
-    /* HEADING & PARAGRAPH STYLES */
+    /* HEADINGS & PARAGRAPHS */
     h1, h2, h3 {
       margin-bottom: 0.5em;
     }
@@ -55,6 +56,9 @@
       background: #fff;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       z-index: 999;
+      min-height: 70px; /* Slightly taller to avoid text cutoff */
+      display: flex;
+      align-items: center;
     }
     .nav-container {
       max-width: 1200px;
@@ -62,15 +66,17 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 60px;
+      width: 100%;
+      /* line-height or padding helps ensure text not cut off */
+      padding: 0 10px; 
     }
     nav ul {
       list-style: none;
       display: flex;
       gap: 25px;
-      /* For very narrow screens, allow wrapping. */
-      flex-wrap: wrap;
+      flex-wrap: wrap; /* allow wrapping on narrow screens */
       justify-content: center;
+      align-items: center;
     }
     nav li {
       display: inline-block;
@@ -78,8 +84,8 @@
     nav a {
       font-weight: bold;
       font-size: 0.95em;
-      padding: 8px 0;
       color: #b30000; /* Red accent for nav links */
+      padding: 10px 5px; /* vertical padding so text won't clip */
     }
     nav a:hover {
       color: #870000;
@@ -89,7 +95,7 @@
     /* FIXED DONATION BOX ON WIDE SCREENS */
     .donation-info {
       position: fixed;
-      top: 100px; /* So it doesn't overlap the nav */
+      top: 100px; /* Clears the nav */
       right: 20px;
       width: 270px;
       background: rgba(255, 255, 255, 0.8);
@@ -117,7 +123,7 @@
     }
     .donation-info a {
       text-decoration: underline;
-      color: #0645AD;  /* link color */
+      color: #0645AD; 
     }
     .donation-info hr {
       margin: 6px 0;
@@ -153,7 +159,7 @@
       position: relative;
       width: 200px;
       height: 200px;
-      margin: 0 auto; /* center the slideshow */
+      margin: 0 auto;
       overflow: hidden;
     }
     .slide {
@@ -192,8 +198,9 @@
     .container {
       /* Reserve space on the right for donation box on wide screens */
       margin: 40px auto;
-      padding: 0 20px;
       max-width: 1000px;
+      /* Adjusted left/right padding to shift text away from left edge slightly */
+      padding: 0 30px; 
       margin-right: 340px; /* Enough space to avoid overlap with donation box */
     }
     .section {
@@ -231,10 +238,8 @@
     }
 
     /* MEDIA QUERIES */
-
-    /* 1) For screens <= 1200px, donation box becomes static
-       and container margin-right is removed. */
     @media (max-width: 1200px) {
+      /* Donation box becomes static, container margin-right removed */
       .donation-info {
         position: static;
         margin: 20px auto;
@@ -247,15 +252,8 @@
         margin-right: auto;
       }
     }
-
-    /* 2) For mobile (<=768px), further tweaks for slideshow & text sizing if needed */
     @media (max-width: 768px) {
-      /* Shrink slideshow for small phones */
-      .slideshow-container {
-        width: 160px;
-        height: 160px;
-      }
-      /* Possibly reduce banner padding */
+      /* Further shrink slideshow, reduce banner padding */
       .banner {
         padding: 20px 10px;
       }
@@ -266,14 +264,17 @@
         font-size: 1.2em;
         margin-bottom: 20px;
       }
-      /* Donation info narrower in flow */
+      .slideshow-container {
+        width: 160px;
+        height: 160px;
+      }
+      /* Donation info narrower in flow on mobile */
       .donation-info {
         width: 90%;
       }
     }
   </style>
 </head>
-
 <body>
   <!-- STICKY NAV -->
   <nav>
@@ -288,7 +289,7 @@
     </div>
   </nav>
 
-  <!-- DONATION INFO (FIXED ON WIDE, static on smaller) -->
+  <!-- DONATION INFO (FIXED ON WIDE, static on smaller screens) -->
   <div class="donation-info">
     <h3>Support Sarah</h3>
     <p>
@@ -312,7 +313,9 @@
   <!-- BANNER SECTION (TITLE, SUBTITLE, SLIDESHOW) -->
   <section id="banner" class="banner">
     <h1>Sarah for Freedom</h1>
-    <div class="subtitle">Advocating for Informed Consent, Free Speech &amp; Constitutional Freedoms</div>
+    <div class="subtitle">
+      Advocating for Informed Consent, Free Speech &amp; Constitutional Freedoms
+    </div>
     
     <!-- Slideshow -->
     <div class="slideshow-container">
