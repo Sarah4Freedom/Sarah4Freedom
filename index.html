@@ -157,7 +157,7 @@
     .slideshow-container {
       position: relative;
       width: 400px;
-      height: 600px;
+      aspect-ratio: 2 / 3; /* Maintains 400px width to 600px height ratio */
       margin: 0 auto 30px auto; /* Center horizontally and add bottom margin */
       overflow: hidden;
     }
@@ -289,24 +289,16 @@
       /* Adjust slideshow size for smaller screens */
       .slideshow-container {
         width: 100%;
-        height: auto;
         max-width: 400px;
+        aspect-ratio: 2 / 3; /* Maintain aspect ratio */
         margin-bottom: 20px;
-      }
-      .slideshow-container img {
-        height: auto;
-        max-height: 600px;
       }
     }
     @media (max-width: 480px) {
       /* Further adjust slideshow size for very small screens */
       .slideshow-container {
-        width: 100%;
-        height: auto;
         max-width: 300px;
-      }
-      .slideshow-container img {
-        max-height: 400px;
+        aspect-ratio: 2 / 3; /* Maintain aspect ratio */
       }
       .freedom-gallery img {
         width: 100%;
