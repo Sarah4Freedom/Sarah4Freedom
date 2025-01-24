@@ -13,8 +13,7 @@
     }
     html {
       scroll-behavior: smooth;
-      /* Ensures anchored sections appear below the sticky nav (which is 60px high). 
-         You can adjust this if you change the nav height. */
+      /* Ensures anchored sections appear below the sticky nav (60px high). */
       scroll-padding-top: 70px;
     }
     body {
@@ -75,45 +74,25 @@
     /* HERO SECTION */
     .hero {
       position: relative;
-      min-height: 60vh; /* Reduced from 90vh to lessen blank space */
+      min-height: 60vh;
+      /* Parallax-style background; replace with your actual image: */
       background: url("https://via.placeholder.com/1920x1080/ffeded/ffffff?text=Your+Background+Image") 
                   no-repeat center center fixed;
       background-size: cover;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 50px 20px;
-    }
-    .hero-overlay {
-      background-color: rgba(255, 255, 255, 0.65);
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .hero-overlay h1 {
-      color: #b30000;
-      margin-bottom: 10px;
-      font-size: 1.8em;
-    }
-    .hero-overlay p {
-      color: #444;
-      margin-bottom: 20px;
-      text-align: center; /* Force center alignment here */
+      /* Reduced overall padding for minimal “frame”: */
+      padding: 20px 10px;
     }
 
-    /* SLIDESHOW */
     .slideshow-container {
+      /* Removed the border, box-shadow, and border-radius for minimal framing: */
       position: relative;
-      width: 180px;
-      height: 180px;
-      margin: 0 auto 20px;
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 10px;
       overflow: hidden;
-      border-radius: 50%;
-      border: 4px solid #fff;
-      box-shadow: 0 0 8px rgba(0,0,0,0.15);
     }
     .slide {
       position: absolute;
@@ -123,10 +102,11 @@
       transition: opacity 1s ease-in-out;
     }
     .slide img {
+      /* Keep images themselves circular if you like, or remove border-radius for square images: */
       width: 100%;
       height: 100%;
-      object-fit: cover;
       border-radius: 50%;
+      object-fit: cover;
     }
     @keyframes slideshow {
       0%   { opacity: 1; }
@@ -153,11 +133,11 @@
       position: absolute;
       top: 20px; 
       right: 20px; 
-      width: 280px;
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(4px);
-      border-radius: 8px;
-      padding: 15px;
+      width: 270px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(2px);
+      border-radius: 6px;
+      padding: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       text-align: left;
     }
@@ -181,15 +161,30 @@
       text-decoration: underline;
     }
     .donation-info hr {
-      margin: 8px 0;
+      margin: 6px 0;
       border: none;
       border-top: 1px solid #ddd;
     }
     .stand-up-message {
-      margin-top: 8px;
+      margin-top: 5px;
       font-weight: bold;
       font-size: 0.85em;
       color: #666;
+    }
+
+    /* MAIN HEADING IN HERO */
+    .hero-heading {
+      margin-top: 10px;
+      color: #b30000;
+      font-size: 1.6em;
+      text-align: center;
+    }
+    .hero-subtitle {
+      text-align: center;
+      color: #444;
+      margin-top: 5px;
+      margin-bottom: 20px;
+      line-height: 1.4;
     }
 
     /* MAIN CONTENT SECTIONS */
@@ -272,7 +267,8 @@
       </p>
     </div>
 
-    <div class="hero-overlay">
+    <div style="text-align:center;">
+      <!-- Slideshow WITHOUT border/frame -->
       <div class="slideshow-container">
         <div class="slide">
           <img src="IMAGE_1.jpg" alt="Sarah's Profile 1" />
@@ -284,8 +280,8 @@
           <img src="IMAGE_3.jpg" alt="Sarah's Profile 3" />
         </div>
       </div>
-      <h1>Sarah for Freedom</h1>
-      <p>
+      <h1 class="hero-heading">Sarah for Freedom</h1>
+      <p class="hero-subtitle">
         Advocating for Informed Consent,<br/> 
         Free Speech &amp; Constitutional Freedoms
       </p>
@@ -328,115 +324,4 @@
         <img src="LEFT_IMAGE_PATH.jpg" alt="Freedom Convoy Left" />
         <img 
           src="https://upload.wikimedia.org/wikipedia/commons/8/8b/Freedom_Convoy_2022%2C_Ottawa%2C_February_12_%2818%29.jpg" 
-          alt="Freedom Convoy Right" 
-        />
-      </div>
-      <p>
-        In January 2022, Sarah and other members of 
-        <strong>Canadian Frontline Nurses</strong> joined the peaceful Freedom 
-        Convoy protests in Ottawa. Canadian Frontline Nurses was recognized as a 
-        participating group in the Freedom Convoy. When Prime Minister Trudeau 
-        invoked the Emergencies Act, it allowed banks to freeze protesters’ accounts 
-        without due process—an unprecedented and controversial move. Believing 
-        this was an unconstitutional overreach of power designed to silence 
-        lawful dissent, Sarah’s group was the first to challenge the invocation 
-        in Federal Court. Although the government eventually revoked the emergency 
-        declaration, the fight continues on appeal, where Sarah seeks to defend 
-        Canadians’ fundamental freedoms and expose the political motivations 
-        behind these extreme measures.
-      </p>
-      <p>
-        Canadian Frontline Nurses seeks to represent the perspective of the 
-        protestors, setting the record straight: they were not “fringe racists” 
-        or “terrorists with unacceptable views,” but rather patriotic Canadians 
-        from diverse backgrounds who peacefully expressed dissent. Their goal was 
-        to encourage the government to end divisive mandates and stop marginalizing 
-        Canadians for holding different viewpoints. In court, the government continues 
-        to characterize these demonstrators as violent extremists posing a serious 
-        threat to national security. Sarah’s legal battle challenges that narrative 
-        head-on.
-      </p>
-      <p>
-        If you are interested in observing the proceedings at the Federal Court of Appeal, 
-        which is scheduled to take place on February 4th and 5th, 2025, starting at 
-        9:30 AM EST, please 
-        <a href="YOUR_FEDERAL_COURT_LINK_HERE" 
-           target="_blank" 
-           rel="noopener noreferrer">
-          click this link
-        </a> 
-        to register for a public link to the stream. 
-        <strong>NOTE: Recording the hearing in any fashion (including screenshots) or 
-        disseminating the hearing is prohibited.</strong>
-        See <a href="https://www.fca-caf.ca/en/pages/hearings/how-to-watch-a-hearing" 
-        target="_blank" 
-        rel="noopener noreferrer">
-          this link
-        </a> for further information.
-      </p>
-    </section>
-
-    <!-- CNO CASE -->
-    <section id="cno-case" class="section">
-      <h2>College of Nurses Discipline Case</h2>
-      <p>
-        The College of Nurses of Ontario (CNO) is attempting to discipline Sarah over a 
-        handful of social media posts and a public speech that questioned public health 
-        guidelines during COVID-19. The CNO alleges her information was “false, 
-        misleading, or inaccurate.” Sarah argues that her views contribute to the 
-        social and scientific debate about the measures that were deployed during 
-        the COVID-19 pandemic, and that the statements she made or shared are backed 
-        by research and expert testimony—testimony the College has refused to hear. 
-        She is now awaiting the outcome of a 30-day hearing and is prepared to appeal 
-        any decision that undermines a nurse’s right to engage in open scientific 
-        dialogue and free expression.
-      </p>
-      <p>
-        Despite these challenges, Sarah remains committed to advocating for transparency, 
-        informed consent, and robust scientific debate within healthcare. She believes 
-        that professionals should not face punishment for respectfully questioning 
-        official policies that impact patient care and public health on a large scale. 
-      </p>
-    </section>
-
-    <!-- SUPPORT SECTION -->
-    <section id="support" class="section">
-      <h2>Get Involved &amp; Show Your Support</h2>
-      <p>
-        These legal battles are costly, and Sarah has lost her primary sources of 
-        income. If you believe in the principles of free speech, informed consent, 
-        and open scientific inquiry, consider contributing to her legal defense.
-      </p>
-      <p>
-        <strong>Interac E-Transfer (preferred):</strong> 
-        Please use your online banking and send to 
-        <strong>sarah4freedom@gmail.com</strong>.
-      </p>
-      <p>
-        <strong>Alternate Donation Option (Outside Canada):</strong><br/>
-        <a href="https://www.givesendgo.com/ThepeoplevstheEmergenciesAct" target="_blank">
-          GiveSendGo
-        </a>
-      </p>
-      <p>
-        Thank you for standing with Sarah in her mission to uphold basic freedoms 
-        and scientific transparency in healthcare.
-      </p>
-      <p>    
-        <strong>Follow Sarah on Social Media:</strong><br/>
-        <a href="https://x.com/SarahChoujounia" target="_blank">Twitter/X</a> |
-        <a href="https://www.facebook.com/sarah.choujounian" target="_blank">Facebook</a> |
-        <a href="https://www.instagram.com/sarah_choujounian/" target="_blank">Instagram</a> |
-        <a href="https://www.tiktok.com/@sarahchoujounian" target="_blank">TikTok</a>
-      </p>
-    </section>
-
-  </div><!-- end container -->
-
-  <!-- FOOTER -->
-  <footer>
-    &copy; 2025 Sarah for Freedom. All rights reserved.
-  </footer>
-
-</body>
-</html>
+          alt="Freedom 
