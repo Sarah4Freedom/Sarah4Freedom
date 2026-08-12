@@ -363,11 +363,17 @@ h3 { font-size: 1.3rem; line-height: 1.28; letter-spacing: -0.02em; }
 .media-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
 .media-card { display: flex; min-height: 220px; flex-direction: column; justify-content: flex-end; padding: 28px; border: 1px solid var(--line); text-decoration: none; transition: transform 160ms ease, border 160ms ease; }
 .media-card:hover { transform: translateY(-3px); border-color: var(--red); }
-.media-featured { grid-row: span 2; min-height: 458px; padding: 0; overflow: hidden; }
-.media-featured img { width: 100%; height: 250px; object-fit: cover; }
-.media-featured .media-type, .media-featured h3, .media-featured p { margin-left: 28px; margin-right: 28px; }
-.media-featured .media-type { margin-top: 25px; }
-.media-featured p { margin-bottom: 25px; }
+.media-featured { grid-row: span 2; min-height: 458px; }
+.media-card.has-thumbnail { justify-content: flex-start; padding: 0; overflow: hidden; }
+.media-thumb { position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden; background: var(--navy); }
+.media-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 220ms ease; }
+.media-card.has-thumbnail:hover .media-thumb img { transform: scale(1.025); }
+.media-play { position: absolute; left: 50%; top: 50%; display: grid; width: 58px; height: 42px; place-items: center; padding-left: 3px; color: var(--white); background: rgba(12,17,27,0.86); border-radius: 10px; box-shadow: 0 6px 22px rgba(0,0,0,0.3); transform: translate(-50%, -50%); font-size: 1rem; }
+.media-play-youtube { background: #ff0033; }
+.media-card-body { display: flex; flex: 1; flex-direction: column; padding: 23px 28px 25px; }
+.media-card-body .media-type { margin-bottom: 0; }
+.media-card-body h3 { margin-top: 16px; }
+.media-card-body p { margin-top: auto; padding-top: 10px; }
 .media-type { margin-bottom: auto; color: var(--red); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
 .media-card h3 { margin-top: 30px; font-size: 1.25rem; }
 .media-card p { margin: 10px 0 0; color: var(--muted); font-size: 0.8rem; }
