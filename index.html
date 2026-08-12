@@ -1,1130 +1,449 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Sarah for Freedom</title>
-<style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 90px;
-    }
-
-    body {
-      font-family: "Helvetica Neue", Arial, sans-serif;
-      color: #333;
-      line-height: 1.6;
-      background-color: #f8f8f8;
-    }
-
-    a {
-      color: #0645AD;
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-
-    a:hover {
-      color: #0b3e8c;
-      text-decoration: underline;
-    }
-
-    .email-link {
-      color: #000 !important;
-      text-decoration: none;
-    }
-
-    h1, h2, h3 {
-      margin-bottom: 0.5em;
-    }
-
-    p {
-      margin-bottom: 1em;
-      text-align: justify;
-    }
-
-    ul {
-      margin: 0 0 1em 1.4em;
-    }
-
-    li {
-      margin-bottom: 0.35em;
-    }
-
-    nav {
-      position: sticky;
-      top: 0;
-      width: 100%;
-      background: #fff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 999;
-      min-height: 70px;
-      display: flex;
-      align-items: center;
-    }
-
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      padding: 0 10px;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 22px;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      margin: 0;
-    }
-
-    nav li {
-      display: inline-block;
-      margin: 0;
-    }
-
-    nav a {
-      font-weight: bold;
-      font-size: 0.95em;
-      color: #b30000;
-      padding: 10px 5px;
-    }
-
-    nav a:hover {
-      color: #870000;
-      text-decoration: underline;
-    }
-
-    .donation-info {
-      position: static;
-      margin: 20px auto;
-      width: 90%;
-      max-width: 520px;
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(2px);
-      border-radius: 8px;
-      padding: 14px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.12);
-      text-align: left;
-      z-index: 1000;
-    }
-
-    @media (min-width: 1600px) {
-      .donation-info {
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        width: 285px;
-        max-width: none;
-        margin: 0;
-      }
-    }
-
-    .donation-info h3 {
-      color: #b30000;
-      margin-bottom: 0.5em;
-      font-size: 1.1em;
-    }
-
-    .donation-info p {
-      text-align: left;
-      margin-bottom: 0.8em;
-      font-size: 0.9em;
-      color: #444;
-      line-height: 1.4;
-    }
-
-    .donation-info strong {
-      color: #b30000;
-    }
-
-    .donation-info a {
-      text-decoration: underline;
-      color: #0645AD;
-    }
-
-    .donation-info hr {
-      margin: 8px 0;
-      border: none;
-      border-top: 1px solid #ddd;
-    }
-
-    .stand-up-message {
-      margin-top: 5px;
-      font-weight: bold;
-      font-size: 0.85em;
-      color: #666;
-    }
-
-    .banner {
-      text-align: center;
-      padding: 40px 20px;
-      background: #fff;
-    }
-
-    .banner h1 {
-      font-size: 2em;
-      color: #b30000;
-      margin-bottom: 10px;
-    }
-
-    .banner .subtitle {
-      margin-bottom: 30px;
-      font-size: 1.5em;
-      color: #444;
-    }
-
-    .slideshow-container {
-      position: relative;
-      width: 400px;
-      aspect-ratio: 2 / 3;
-      margin: 0 auto 30px auto;
-      overflow: hidden;
-    }
-
-    .slide {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 3s ease-in-out;
-      animation: fade 63s infinite;
-    }
-
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    @keyframes fade {
-      0% { opacity: 0; }
-      7.5% { opacity: 1; }
-      25% { opacity: 1; }
-      32.5% { opacity: 0; }
-      100% { opacity: 0; }
-    }
-
-    .slide:nth-child(1) { animation-delay: 0s; }
-    .slide:nth-child(2) { animation-delay: 9s; }
-    .slide:nth-child(3) { animation-delay: 18s; }
-    .slide:nth-child(4) { animation-delay: 27s; }
-    .slide:nth-child(5) { animation-delay: 36s; }
-    .slide:nth-child(6) { animation-delay: 45s; }
-    .slide:nth-child(7) { animation-delay: 54s; }
-
-    .container {
-      margin: 40px auto;
-      max-width: 980px;
-      padding: 0 30px;
-    }
-
-    .section {
-      margin-bottom: 48px;
-      background: #fff;
-      border-radius: 8px;
-      padding: 26px;
-      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
-    }
-
-    .section h2 {
-      margin-bottom: 15px;
-      color: #b30000;
-      font-size: 1.55em;
-    }
-
-    .section h3 {
-      color: #444;
-      font-size: 1.2em;
-      margin-top: 1.2em;
-    }
-
-    .intro-box {
-      border-left: 4px solid #b30000;
-      background: #fff8f8;
-      padding: 16px 18px;
-      margin: 18px 0;
-      border-radius: 6px;
-    }
-
-    .intro-box p {
-      text-align: left;
-      margin-bottom: 0.6em;
-    }
-
-    .faq-item {
-      border-top: 1px solid #e3e3e3;
-      padding: 20px 0 8px 0;
-    }
-
-    .faq-item:first-of-type {
-      border-top: none;
-      padding-top: 0;
-    }
-
-    .faq-item h3 {
-      color: #b30000;
-      font-size: 1.13em;
-      margin-bottom: 0.75em;
-      margin-top: 0;
-    }
-
-    .faq-item p {
-      text-align: left;
-    }
-
-    .key-line {
-      font-weight: bold;
-      color: #333;
-    }
-
-    .materials-grid,
-    .press-list {
-      display: grid;
-      gap: 14px;
-      margin-top: 14px;
-    }
-
-    .material-card,
-    .press-card {
-      border: 1px solid #e1e1e1;
-      border-radius: 8px;
-      padding: 14px 16px;
-      background: #fcfcfc;
-    }
-
-    .material-card h3,
-    .press-card h3 {
-      margin: 0 0 6px 0;
-      color: #b30000;
-      font-size: 1.05em;
-    }
-
-    .material-card p,
-    .press-card p {
-      text-align: left;
-      margin-bottom: 0.4em;
-      font-size: 0.95em;
-    }
-
-    .freedom-gallery {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    .freedom-gallery img {
-      width: 45%;
-      max-width: 400px;
-      border-radius: 5px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
-
-    .support-box {
-      background: #fff8f8;
-      border: 1px solid #f1cccc;
-      border-radius: 8px;
-      padding: 18px;
-      margin-top: 16px;
-    }
-
-    .support-box p {
-      text-align: left;
-    }
-
-    .donate-button {
-      display: inline-block;
-      background: #b30000;
-      color: #fff !important;
-      padding: 10px 16px;
-      border-radius: 6px;
-      font-weight: bold;
-      margin: 6px 0 10px 0;
-    }
-
-    .donate-button:hover {
-      background: #870000;
-      text-decoration: none;
-    }
-
-    .photo-mosaic {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      margin: 24px 0 36px 0;
-    }
-
-    .photo-card {
-      overflow: hidden;
-      border-radius: 10px;
-      background: #fff;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.10);
-    }
-
-    .photo-card img {
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      height: auto;
-      object-fit: cover;
-      object-position: center center;
-      display: block;
-    }
-
-    .inline-photo {
-      position: relative;
-      overflow: hidden;
-      border-radius: 10px;
-      background: #f2f2f2;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.10);
-      margin: 6px 0 20px 0;
-    }
-
-    .inline-photo.right {
-      float: right;
-      width: min(38%, 320px);
-      margin: 4px 0 18px 26px;
-    }
-
-    .inline-photo.left {
-      float: left;
-      width: min(38%, 320px);
-      margin: 4px 26px 18px 0;
-    }
-
-    .inline-photo.wide {
-      clear: both;
-      width: 100%;
-      margin: 20px 0 24px 0;
-    }
-
-    .inline-photo img,
-    .photo-row img {
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      height: auto;
-      object-fit: cover;
-      object-position: center center;
-      display: block;
-      border-radius: 0;
-      box-shadow: none;
-      background: #f2f2f2;
-    }
-
-    .photo-row {
-      clear: both;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      margin: 20px 0 24px 0;
-      align-items: stretch;
-    }
-
-    .photo-row img {
-      border-radius: 10px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.10);
-    }
-
-    .photo-row img[alt*="truck"],
-    .photo-row img[alt*="Truck"] {
-      object-position: center 35%;
-    }
-
-    .photo-row img[alt*="Parliament"] {
-      object-position: center 38%;
-    }
-
-    .inline-photo img[alt*="protest scene"] {
-      object-position: center 45%;
-    }
-
-    .faq-item::after {
-      content: "";
-      display: block;
-      clear: both;
-    }
-
-    footer {
-      background: #fff;
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9em;
-      color: #666;
-      border-top: 1px solid #eee;
-    }
-
-    @media (max-width: 1200px) {
-      .donation-info {
-        position: static;
-        margin: 20px auto;
-        width: 90%;
-        max-width: 520px;
-        left: 0;
-        right: 0;
-      }
-
-      .container {
-        margin-right: auto;
-      }
-    }
-
-    @media (max-width: 992px) {
-      .freedom-gallery img {
-        max-width: 350px;
-      }
-    }
-
-
-
-    @media (max-width: 900px) {
-      .inline-photo.right,
-      .inline-photo.left {
-        float: none;
-        width: 100%;
-        max-width: 520px;
-        margin: 12px auto 20px auto;
-      }
-
-      .photo-row {
-        grid-template-columns: 1fr;
-        max-width: 560px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .banner {
-        padding: 20px 10px;
-      }
-
-      .banner h1 {
-        font-size: 1.6em;
-      }
-
-      .banner .subtitle {
-        font-size: 1.2em;
-        margin-bottom: 20px;
-      }
-
-      .slideshow-container {
-        width: 100%;
-        max-width: 400px;
-        aspect-ratio: 2 / 3;
-        margin-bottom: 20px;
-      }
-
-      .section {
-        padding: 20px;
-      }
-
-      .inline-photo.right,
-      .inline-photo.left {
-        float: none;
-        width: 100%;
-        margin: 14px 0 18px 0;
-      }
-
-      .photo-row {
-        grid-template-columns: 1fr;
-      }
-
-      p {
-        text-align: left;
-      }
-    }
-
-
-    @media (max-width: 768px) {
-      .photo-mosaic {
-        column-count: 2;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .slideshow-container {
-        max-width: 300px;
-        aspect-ratio: 2 / 3;
-      }
-
-      .freedom-gallery img {
-        width: 100%;
-      }
-
-      .photo-mosaic {
-        column-count: 1;
-        column-gap: 0;
-      }
-
-      .photo-card {
-        margin-bottom: 14px;
-      }
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Support Sarah Choujounian's appeal of the College of Nurses of Ontario discipline decision — a case about procedural fairness, free speech, and a nurse's right to participate in public debate.">
+  <meta property="og:title" content="Sarah for Freedom — Support the CNO Appeal">
+  <meta property="og:description" content="Sarah's appeal asks whether a nursing regulator can punish public dissent through an unfair process.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.sarah4freedom.com/">
+  <meta property="og:image" content="https://www.sarah4freedom.com/images/og-sarah-cno-appeal-v4.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sarah for Freedom — Support the CNO Appeal">
+  <meta name="twitter:description" content="Help Sarah defend her freedom to speak and participate in public debate.">
+  <meta name="twitter:image" content="https://www.sarah4freedom.com/images/og-sarah-cno-appeal-v4.png">
+  <title>Sarah for Freedom | Support the CNO Appeal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Libre+Franklin:ital,wght@0,500;0,600;0,700;0,800;1,600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="script.js"></script>
 </head>
 <body>
-<nav>
-<div class="nav-container">
-<ul>
-<li><a href="#banner">Home</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#scc-appeal">SCC Leave Application</a></li>
-<li><a href="#case-materials">Case Materials</a></li>
-<li><a href="#press">Press</a></li>
-<li><a href="#cno-case">CNO Case</a></li>
-<li><a href="#support">Support</a></li>
-</ul>
-</div>
-</nav>
-<div class="donation-info">
-<h3>Support the Case</h3>
-<p>
-      Help defend the right of Canadians to be heard by the courts and to challenge unlawful executive power.
-    </p>
-<p>
-   Please consider donating to our legal support fund for our case to the Supreme Court of Canada.
-</p>
-   <p>
-<strong>Interac E-Transfer:</strong><br/>
-      Send to <strong class="email-link">sarahc4freedom@gmail.com</strong><br/>
-<span>Please include “SCC Appeal” in the message line.</span>
-</p>
-<hr/>
-<p>
-<strong>GiveSendGo:</strong><br/>
-<a href="https://www.givesendgo.com/supreme-court-of-canada-appeal-of-emerge" rel="noopener noreferrer" target="_blank">
-        Support our case to the SCC
-      </a>
-</p>
-<hr/>
-<p class="stand-up-message">
-      This is about the right to be heard and the limits of government power.
-    </p>
-</div>
-<section class="banner" id="banner">
-<h1>Sarah for Freedom</h1>
-<div class="slideshow-container">
-<div class="slide">
-<img alt="Sarah's Profile 1" loading="lazy" src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_1.jpg?raw=true"/>
-</div>
-<div class="slide">
-<img alt="Sarah's Profile 2" loading="lazy" src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_2.jpg?raw=true"/>
-</div>
-<div class="slide">
-<img alt="Sarah's Profile 3" loading="lazy" src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_3.jpg?raw=true"/>
-</div>
-<div class="slide">
-<img alt="Sarah's Profile 4" loading="lazy" src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_4.jpg?raw=true"/>
-</div>
-<div class="slide">
-<img alt="Sarah's Profile 5" loading="lazy" src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_5.jpg?raw=true"/>
-</div>
-<div class="slide">
-<img alt="Sarah's Profile 6" loading="lazy" src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_6.jpg?raw=true"/>
-</div>
-<div class="slide">
-<img alt="Sarah's Profile 7" loading="lazy" src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/IMAGE_7.jpg?raw=true"/>
-</div>
-</div>
-<div class="subtitle">
-      Advocating for Informed Consent, Free Speech &amp; Constitutional Freedoms
-    </div>
-</section>
-<div class="container">
-<section class="section" id="about">
-<h2>About Sarah</h2>
-<p>
-        Sarah Choujounian is a former Registered Practical Nurse (RPN) from Ontario, Canada,
-        with over a decade of experience caring for children with disabilities, senior residents
-        in long-term care, and advocating as a union leader. She became a vocal critic of certain
-        COVID-19 policies, believing that lockdowns and mandates were causing more harm than good.
-        After speaking publicly and challenging the official narrative, she faced backlash and lost
-        her nursing positions.
-      </p>
-<p>
-        Sarah founded <strong>Nurses Against Lockdowns</strong>, an advocacy group focused on raising
-        awareness about the detrimental social and psychological effects of restrictive COVID-19 policies.
-        She later co-founded <strong>Canadian Frontline Nurses</strong>, which organized rallies and
-        events supporting healthcare workers opposed to vaccine mandates, and promoted open scientific
-        dialogue on the measures implemented by public health authorities.
-      </p>
-<p>
-        Sarah remains committed to defending free expression, informed consent, and the right of
-        Canadians to challenge government action in court.
-      </p>
-</section>
-<section class="section" id="scc-appeal">
-<h2>Supreme Court of Canada – What You Need to Know</h2>
-<div class="intro-box">
-<p>
-          The federal government is asking the Supreme Court of Canada for permission to appeal decisions
-          that found its use of the <em>Emergencies Act</em> was unlawful.
-        </p>
-<p>
-          Canadian Frontline Nurses opposes the government’s position. We say the courts were right to
-          find that the legal test for using the <em>Emergencies Act</em> was not met, that the declaration
-          of a public order emergency was unreasonable, and that key measures — especially the financial
-          measures — violated the Charter.
-        </p>
-<p class="key-line">
-          We are also asking the Supreme Court to deal with a further issue: when emergency measures
-          directly target a group of Canadians, do those Canadians have to wait until they are arrested,
-          fined, jailed, or financially frozen out before they can challenge those measures in court?
-        </p>
-</div>
-<div class="faq-item">
-<h3>Where is the case right now?</h3>
-<p>
-          The case is at the <strong>leave to appeal</strong> stage.
-        </p>
-<p>
-          That means the Supreme Court of Canada has not yet agreed to hear the case. The Court is now
-          deciding whether the issues are important enough to be heard at a full appeal.
-        </p>
-<p>
-          The Court may decide to hear the government’s appeal, Canadian Frontline Nurses’ appeal, both
-          appeals, or neither. If leave is granted, there will be a full hearing. If leave is denied, the
-          Federal Court of Appeal decision remains in place.
-        </p>
-</div>
-<div class="faq-item">
-<h3>Why is Canadian Frontline Nurses involved in this case?</h3><div class="inline-photo right"><img alt="Canadian Frontline Nurses gathered in Ottawa" loading="lazy" src="images/inline_photo_1.jpg"/></div>
-<p>
-          Because Canadian Frontline Nurses was not watching from the sidelines. It was part of what was
-          happening on the ground in Ottawa.
-        </p>
-<p>
-          Canadian Frontline Nurses was physically present in Ottawa, supported the truckers and other
-          participants, livestreamed and communicated what was happening on the ground, engaged directly
-          with participants and support networks, and solicited donations to support the truckers in their
-          protest.
-        </p>
-<p>
-          Canadian Frontline Nurses was recognized as a key participant and supporter of the Freedom
-          Convoy protest. Within days of the <em>Emergencies Act</em> being invoked, Canadian Frontline
-          Nurses brought the <strong>first legal challenge in the country</strong>.
-        </p>
-<p>
-          The protest, from the perspective of those participating in it, was about opposition to COVID-19
-          mandates and restrictions, concern about government overreach, and the defence of bodily autonomy,
-          informed consent, free expression, and basic civil liberties.
-        </p>
-<p>
-          When the <em>Emergencies Act</em> was invoked, it applied to people like us — people who
-          participated in the protest, supported it, donated to it, or helped sustain it. Those people faced
-          arrest, fines, jail, and frozen bank accounts.
-        </p>
-<p class="key-line">
-          We were part of the group the emergency measures were directed at. That is why this case matters.
-        </p><div class="photo-row"><img alt="Freedom Convoy truck in Ottawa" loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/8/8b/Freedom_Convoy_2022%2C_Ottawa%2C_February_12_%2818%29.jpg"/><img alt="Canadian Frontline Nurses in front of the banner truck" loading="lazy" src="images/inline_photo_2.jpg"/></div>
-</div>
+  <a class="skip-link" href="#main">Skip to main content</a>
 
-<div class="faq-item">
-<h3>What were we arguing in court?</h3><div class="inline-photo left"><img alt="Freedom Convoy protest scene" loading="lazy" src="https://github.com/Sarah4Freedom/Sarah4Freedom/blob/main/images/LEFT_IMAGE_PATH.jpg?raw=true"/></div>
-<p>
-          Canadian Frontline Nurses raised three core arguments from the beginning.
-        </p>
-<p>
-          First, the <em>Emergencies Act</em> should not have been used. We argued that the government did
-          not meet the legal test required to declare a public order emergency, and that there was no true
-          national emergency involving threats to the security of Canada.
-        </p>
-<p>
-          Second, we argued that the decision was political, not legal. In plain terms, we argued that the
-          Act was used to deal with a political problem, not a lawful emergency under the Act. Canadian
-          Frontline Nurses was the only party to squarely raise that issue.
-        </p>
-<p>
-          Third, we argued that Canadians still have basic legal protections, even in an emergency. That
-          includes protections under the Charter and the <em>Canadian Bill of Rights</em> relating to property,
-          due process, and access to financial services such as bank accounts.
-        </p>
-</div>
-<div class="faq-item">
-<h3>What did the courts actually decide?</h3>
-<p>
-          Two courts have already ruled on the government’s use of the <em>Emergencies Act</em>.
-        </p>
-<p>
-          The Federal Court found that the government did not meet the legal test required to invoke the Act,
-          that the declaration of a public order emergency was unreasonable, and that key measures — especially
-          the financial measures allowing accounts to be frozen — violated the Charter.
-        </p>
-<p>
-          The Federal Court of Appeal dismissed the government’s appeal and upheld those key findings.
-        </p>
-<p class="key-line">
-          In plain terms: both courts found that the government’s use of the <em>Emergencies Act</em> was unlawful.
-        </p>
-</div>
-<div class="faq-item">
-<h3>If both courts found the government acted unlawfully, what is the issue now?</h3>
-<p>
-          The government is asking the Supreme Court to reverse those findings and validate its use of the
-          <em>Emergencies Act</em>.
-        </p>
-<p>
-          Canadian Frontline Nurses opposes that. But our appeal also deals with the rule the courts applied
-          to people like us — people who were clearly subject to the emergency measures, but whose bank accounts
-          were not actually frozen and who were not actually charged.
-        </p>
-<p>
-          The courts concluded that because the harshest consequences were not imposed on us personally, we
-          could not fully pursue our own challenge.
-        </p>
-<p class="key-line">
-          We say that is wrong. Canadians should not have to wait until the government imposes the penalty
-          before they can challenge emergency measures that already apply to them.
-        </p>
-</div>
-<div class="faq-item">
-<h3>What does “standing” mean?</h3>
-<p>
-          “Standing” means the right to bring a case before a court.
-        </p>
-<p>
-          In this case, the courts said Canadian Frontline Nurses did not have standing because the most
-          serious consequences — such as frozen bank accounts or charges — were not actually imposed on us
-          personally.
-        </p>
-<p>
-          We say that misses the point. When emergency measures are directed at you, control what you can do,
-          threaten you with penalties, and expose you to financial consequences, you are affected in a real and
-          practical way.
-        </p>
-</div>
-<div class="faq-item">
-<h3>What is wrong with the courts’ approach?</h3>
-<p>
-          It ignores the coercive effect of government power.
-        </p>
-<p>
-          A law does not only affect people when the government finally punishes them. It affects people when
-          it tells them that what they are doing is illegal, threatens them with serious consequences, and gives
-          officials or financial institutions the power to act against them.
-        </p>
-<p class="key-line">
-          If that approach stands, Canadians may be told: you cannot challenge the measure when it targets you.
-          You must wait until the damage is done.
-        </p>
-</div>
-<div class="faq-item">
-<h3>Why does Canadian Frontline Nurses’ role in the protest matter?</h3>
-<p>
-          Because Canadian Frontline Nurses was exactly the kind of participant and supporter the emergency
-          measures were aimed at.
-        </p>
-<p>
-          We were present. We supported the truckers. We helped amplify what was happening through livestreams
-          and public communication. We solicited donations to support the protest. We were recognized as key
-          participants and supporters.
-        </p>
-<p>
-          That made our evidence and perspective important. We were not asking the Court to speculate about
-          what happened. We were asking the Court to consider the evidence and arguments of people who were
-          actually there and actually subject to the regime.
-        </p><div class="photo-row"><img alt="Canadian Frontline Nurses beside the truck near Parliament" loading="lazy" src="images/inline_photo_3.jpg"/><img alt="Support and solidarity among protest participants" loading="lazy" src="images/inline_photo_4.jpg"/></div>
-</div>
-<div class="faq-item">
-<h3>What arguments were not decided?</h3>
-<p>
-          Although the courts found that the <em>Emergencies Act</em> was used unlawfully, they did not decide
-          every argument Canadian Frontline Nurses raised.
-        </p>
-<p>
-          In particular, they did not decide our argument that the decision to invoke the Act was unreasonable
-          because it was politically motivated.
-        </p>
-<p>
-          They also did not decide our argument based on the <em>Canadian Bill of Rights</em>, including the
-          protection of property and due process when the government uses emergency powers affecting access to
-          bank accounts and financial services.
-        </p>
-</div>
-<div class="faq-item">
-<h3>What is our appeal about?</h3>
-<p>
-          Our appeal asks the Supreme Court to decide whether people in our position can challenge emergency
-          measures that directly apply to them, even if the government has not yet imposed the harshest consequences
-          on them personally.
-        </p>
-<p>
-          It is about whether Canadians who are subject to coercive emergency powers can go to court before they
-          are arrested, fined, jailed, or financially frozen out.
-        </p>
-<p>
-          It is also about whether courts should hear from people who were directly involved and directly affected
-          when deciding whether government power was lawfully used.
-        </p>
-</div>
-<div class="faq-item">
-<h3>What is the government asking the Supreme Court to do?</h3>
-<p>
-          The government is asking the Supreme Court to reverse the findings that its use of the
-          <em>Emergencies Act</em> was unlawful.
-        </p>
-<p>
-          That includes defending the declaration of a public order emergency, the use of emergency powers against
-          protest activity, financial measures that allowed accounts to be frozen, and penalties attached to the
-          emergency measures.
-        </p>
-</div>
-<div class="faq-item">
-<h3>So what are the two appeals really about?</h3>
-<p>
-          The government’s appeal is about whether its use of the <em>Emergencies Act</em> should be upheld.
-        </p>
-<p>
-          Our appeal is about who gets to challenge those emergency measures, and when.
-        </p>
-<p class="key-line">
-          We say Canadians should not have to wait until the government actually imposes the penalty before
-          they can ask a court to decide whether the measures are lawful.
-        </p>
-</div>
-<div class="faq-item">
-<h3>What is the issue with the Chief Justice?</h3>
-<p>
-          Before this case reached the Supreme Court, Chief Justice Wagner made public comments about the
-          Freedom Convoy and the people involved.
-        </p>
-<p>
-          Those comments included describing what happened in Ottawa as a beginning of “anarchy,” referring to
-          people taking other citizens “hostage,” and saying that the conduct should be denounced with force by
-          those in positions of authority.
-        </p>
-<p>
-          Canadian Frontline Nurses was the only party with the courage to raise the concern that those comments
-          could give rise to a reasonable apprehension of bias. When a judge has already spoken publicly about the
-          events at the centre of a case, it can affect public confidence in whether the case will be decided fairly.
-        </p>
-<p>
-          We asked that he step aside. He decided that he will remain involved.
-        </p>
-<p>
-          This is not about personal criticism. It is about ensuring that courts are seen to be fair, independent,
-          and impartial.
-        </p>
-</div>
-<div class="faq-item">
-<h3>What happens next?</h3>
-<p>
-          The Supreme Court will decide whether to grant leave to appeal. It may hear the government’s appeal,
-          our appeal, both appeals, or neither.
-        </p>
-<p>
-          If leave is granted, there will be a full hearing before the Supreme Court of Canada. If leave is denied,
-          the Federal Court of Appeal decision remains in place.
-        </p>
-</div>
-<div class="faq-item">
-<h3>Why should Canadians care?</h3>
-<p>
-          Because this case is about more than one protest. It is about government power and access to justice.
-        </p>
-<p>
-          Can emergency powers be used against Canadians without meeting the legal test? Can people challenge
-          emergency measures when they are subject to them? Or must they wait until they are arrested, fined,
-          jailed, or financially frozen out?
-        </p>
-<p class="key-line">
-          These questions affect everyone.
-        </p>
-</div>
-<div class="faq-item">
-<h3>Why support this case?</h3>
-<p>
-          This case is about defending the right of Canadians to challenge government power before the damage is done.
-        </p>
-<p>
-          It is about making sure emergency powers stay within legal limits. It is about ensuring courts hear from
-          people who were directly affected when deciding whether the government acted lawfully.
-        </p>
-</div>
-<div class="support-box">
-<p class="key-line">
-          The courts found the <em>Emergencies Act</em> was used unlawfully. The question now is whether Canadians
-          have to wait until they are punished before they can challenge it.
-        </p>
-<p>
-<a class="donate-button" href="https://www.givesendgo.com/supreme-court-of-canada-appeal-of-emerge" rel="noopener noreferrer" target="_blank">
-            Support our case to the SCC
-          </a>
-</p>
-<p>
-<strong>Interac E-Transfer:</strong><br/>
-          Send to <strong class="email-link">sarahc4freedom@gmail.com</strong><br/>
-          Please include <strong>“SCC Appeal”</strong> in the message line.
-        </p>
-</div>
-</section>
-<section class="section" id="case-materials">
-<h2>Case Materials</h2>
-<p>
-        The following materials relate to Canadian Frontline Nurses’ application for leave to appeal to
-        the Supreme Court of Canada.
-      </p>
-<div class="materials-grid">
-<div class="material-card">
-<h3>Canadian Frontline Nurses – Application for Leave to Appeal</h3>
-<p>
-            Our application explains why the Supreme Court should hear the issues about the right to be heard,
-            the role of directly affected parties, and the Canadian Bill of Rights.
-          </p>
-<p>
-<a href="Application%20(Vol%203)%20-%20Canadian%20Frontline%20Nurses.pdf" rel="noopener noreferrer" target="_blank">Read the Application</a>
-</p>
-</div>
-<div class="material-card">
-<h3>Attorney General of Canada – Response</h3>
-<p>
-            The government’s response to Canadian Frontline Nurses’ application for leave to appeal.
-          </p>
-<p>
-<a href="Response-%20Attorney%20General%20of%20Canada.pdf" rel="noopener noreferrer" target="_blank">Read the Government’s Response</a>
-</p>
-</div>
-<div class="material-card">
-<h3>Canadian Frontline Nurses – Reply</h3>
-<p>
-            Our reply explains why the government’s response confirms the importance of the issues raised.
-          </p>
-<p>
-<a href="Reply%20-%20Canadian%20Frontline%20Nurses.pdf" rel="noopener noreferrer" target="_blank">Read the Reply</a>
-</p>
-</div>
-</div>
-</section>
-<section class="section" id="press">
-<h2>Press Coverage</h2>
-<p>
-        The following articles and commentary discuss the Supreme Court leave applications and the issue
-        of Chief Justice Wagner’s participation.
-      </p>
-<div class="press-list">
-<div class="press-card">
-<h3>Toronto Sun</h3>
-<p>
-<a href="https://torontosun.com/opinion/columnists/chief-justice-wagner-refuses-recusal-freedom-convoy-case-emergencies-act" rel="noopener noreferrer" target="_blank">
-              LILLEY: Chief Justice Wagner refuses recusal in Freedom Convoy case
-            </a>
-</p>
-</div>
-  
-<div class="press-card">
-<h3>National Post</h3>
-<p>
-<a href="https://nationalpost.com/news/canada/emergencies-act-richard-wagner" rel="noopener noreferrer" target="_blank">
-             Supreme Court justice asked to consider recusing himself from Emergencies Act appeal
-            </a>
-</p>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="#top" aria-label="Sarah for Freedom home">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span>Sarah <em>for</em> Freedom</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+        <a href="#cno-appeal">The CNO Appeal</a>
+        <a href="#why-it-matters">Why It Matters</a>
+        <a href="#sarah">About Sarah</a>
+        <a href="#other-case">Emergencies Act Case</a>
+        <a href="#media">Media</a>
+        <a class="nav-donate" href="#support">Support the Appeal</a>
+      </nav>
     </div>
-<div class="press-card">
-<h3>The Globe and Mail</h3>
-<p>
-<a href="https://www.theglobeandmail.com/canada/article-groups-ask-supreme-court-chief-justice-to-recuse-himself-from/" rel="noopener noreferrer" target="_blank">
-              Group asks Supreme Court chief justice to recuse himself from Emergencies Act case
-            </a>
-</p>
-</div>
-<div class="press-card">
-<h3>National Post</h3>
-<p>
-<a href="https://nationalpost.com/news/politics/chief-justice-richard-wagner-dismisses-request-to-recuse-from-emergencies-act-appeal" rel="noopener noreferrer" target="_blank">
-             Chief Justice Richard Wagner dismisses request to recuse from Emergencies Act appeal
-            </a>
-</p>
-</div>
-<div class="press-card">
-<h3>Western Standard</h3>
-<p>
-<a href="https://www.westernstandard.news/canadian/chief-justice-wagner-rejects-recusal-request-in-emergencies-act-appeal/73164" rel="noopener noreferrer" target="_blank">
-              Chief Justice Wagner rejects recusal request in Emergencies Act appeal
-            </a>
-</p>
-</div>
-<div class="press-card">
-<h3>Western Standard Opinion</h3>
-<p>
-<a href="https://www.westernstandard.news/opinion/giesbrecht-wagnersrefusal-to-recuse-himself-from-the-emergency-act-appeal-is-a-mistake-so-are-his-courts-radical-indigenous-decisions/73203" rel="noopener noreferrer" target="_blank">
-              GIESBRECHT: Wagner’s refusal to recuse himself from the Emergency Act appeal is a mistake — so are his court’s radical indigenous decisions
-            </a>
-</p>
-</div>
-<div class="press-card">
-<h3>Toronto Sun Video</h3>
-<p>
-<a href="https://torontosun.com/video/bc3576ae-4588-11f1-9c57-b2d654770e7e/lilley-unleashed-supreme-court-chief-justice-richard-wagner-has-declared-he-is-above-the-law" rel="noopener noreferrer" target="_blank">
-              LILLEY UNLEASHED: Supreme Court Chief Justice Richard Wagner has declared he is above the law
-            </a>
-</p>
-</div>
-<div class="press-card">
-<h3>National Post Opinion</h3>
-<p>
-<a href="https://nationalpost.com/opinion/the-arrogance-of-chief-justice-richard-wagner" rel="noopener noreferrer" target="_blank">
-              Michael Higgins: The arrogance of Chief Justice Richard Wagner
-            </a>
-</p>
-</div>
-</div>
-</section>
-<section class="section" id="cno-case">
-<h2>College of Nurses Discipline Case</h2>
-<p>
-        Sarah’s College of Nurses of Ontario case will be updated shortly. This section will explain what is
-        happening in that proceeding, why it matters, and how it connects to free expression, informed consent,
-        and the right of healthcare professionals to participate in public debate.
-      </p>
-</section>
-<section class="section" id="support">
-<h2>Support the Case</h2>
-<p>
-        This case is about defending the right of Canadians to be heard by the courts and challenging the
-        unlawful use of executive power.
-      </p>
-<p>
-        If you want to support that effort, you can contribute through GiveSendGo or by Interac e-transfer.
-      </p>
-<div class="support-box">
-<p>
-<a class="donate-button" href="https://www.givesendgo.com/supreme-court-of-canada-appeal-of-emerge" rel="noopener noreferrer" target="_blank">
-            Support our case to the SCC
-          </a>
-</p>
-<p>
-<strong>Interac E-Transfer:</strong><br/>
-          Send to <strong class="email-link">sarahc4freedom@gmail.com</strong><br/>
-          Please include <strong>“SCC Appeal”</strong> in the message line.
-        </p>
-</div>
-<p>
-        Public support helps ensure that these issues, and the evidence and arguments behind them, can be
-        fully and properly put before the Court.
-      </p>
-<p>
-<strong>Follow Sarah on Social Media:</strong><br/>
-<a href="https://x.com/SarahChoujounia" rel="noopener noreferrer" target="_blank">Twitter/X</a> |
-        <a href="https://www.facebook.com/sarah.choujounian" rel="noopener noreferrer" target="_blank">Facebook</a> |
-        <a href="https://www.instagram.com/sarah_choujounian/" rel="noopener noreferrer" target="_blank">Instagram</a> |
-        <a href="https://www.tiktok.com/@sarahchoujounian" rel="noopener noreferrer" target="_blank">TikTok</a>
-</p>
-</section>
-</div>
-<footer>
-    © 2026 Sarah for Freedom. All rights reserved.
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Ontario Divisional Court Appeal</p>
+          <h1>Sarah was disciplined for what she said in public. <span>Her appeal asks whether a nursing regulator went too far in punishing public dissent.</span></h1>
+          <p class="hero-lede">The College of Nurses of Ontario case concerned twelve public statements Sarah made or shared during the COVID-19 pandemic. Her appeal asks the Divisional Court to review the treatment of her defence evidence, the fairness of the hearing, and whether her freedom to speak and participate in public debate was properly respected.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#support">Fund the Appeal</a>
+            <a class="button button-ghost" href="#cno-appeal">Understand the Case</a>
+          </div>
+          <nav class="social-row" aria-label="Sarah's social media">
+            <span>Follow the case</span>
+            <a href="https://x.com/SarahChoujounia" target="_blank" rel="noopener noreferrer">X</a>
+            <a href="https://www.facebook.com/sarah.choujounian" target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href="https://www.instagram.com/sarah_choujounian/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.tiktok.com/@sarahchoujounian" target="_blank" rel="noopener noreferrer">TikTok</a>
+          </nav>
+        </div>
+        <figure class="hero-portrait">
+          <img src="images/IMAGE_1.jpg" alt="Sarah Choujounian speaking at a public event">
+          <figcaption>Nurses have the same right as other Canadians to question public policy and participate in public debate.</figcaption>
+        </figure>
+      </div>
+      <div class="case-strip" aria-label="Key case facts">
+        <div><strong>12</strong><span>impugned public statements</span></div>
+        <div><strong>28 days</strong><span>of liability hearings over nearly two years</span></div>
+        <div><strong>$297,976.40</strong><span>costs ordered by the Panel</span></div>
+        <div><strong>Free-speech appeal</strong><span>about public dissent and regulatory power</span></div>
+      </div>
+    </section>
+
+    <section class="video-section section-dark" aria-labelledby="video-title">
+      <div class="content-grid video-grid">
+        <div class="video-copy">
+          <p class="eyebrow eyebrow-light">A message from Sarah</p>
+          <h2 id="video-title">Why I am taking this case to court</h2>
+          <p>Hear directly from Sarah about the decision, the appeal, and why she believes the case matters to nurses and everyone who values open public debate.</p>
+          <a class="text-link text-link-light" href="#support">Help carry the appeal forward <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="video-frame">
+          <video controls playsinline preload="metadata" poster="images/sarah-video-poster.png">
+            <source src="media/sarah-cno-appeal-message.m4v" type="video/mp4">
+            Your browser does not support embedded video. <a href="media/sarah-cno-appeal-message.m4v">Download Sarah's message</a>.
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="cno-appeal">
+      <div class="section-heading">
+        <p class="eyebrow">The CNO Appeal</p>
+        <h2>The case, without the legal fog</h2>
+        <p>This is an appeal from the Discipline Committee's March 13, 2026 liability decision and its July 6, 2026 penalty and costs order. The appeal has not yet been decided; the grounds below are Sarah's position and remain to be determined by the Court.</p>
+      </div>
+
+      <aside class="speech-context" aria-labelledby="why-sarah-spoke">
+        <div class="speech-context-heading">
+          <p class="eyebrow">Why Sarah spoke</p>
+          <h3 id="why-sarah-spoke">Informed consent requires the freedom to question official public-health claims.</h3>
+        </div>
+        <div class="speech-context-copy">
+          <p>Sarah says she spoke because public officials and public-health institutions often presented one account of COVID-19 as settled while treating contrary questions and perspectives as misinformation. She questioned whether the risks of COVID-19 were being communicated in proportion to other serious public-health problems, and whether fear-based messaging obscured the harms associated with prolonged masking, lockdowns, isolation, and disrupted care.</p>
+          <p>She was also concerned about the pressure placed on Canadians—especially healthcare workers—to accept the then-new mRNA vaccines as a condition of employment or participation in public life. Sarah's position is that informed consent requires more than promotion of one preferred conclusion: people must be free to consider risks, benefits, alternatives, uncertainty, and evidence as it develops.</p>
+          <p>Many Canadians remain skeptical about how the pandemic was managed and whether dissenting professionals were too readily censored, dismissed, or silenced. Sarah's appeal asks a narrower legal question, but it arises from that larger debate: how far can a nursing regulator go in disciplining a nurse for challenging the official public-health narrative?</p>
+        </div>
+      </aside>
+
+      <div class="timeline" aria-label="CNO case timeline">
+        <article>
+          <span class="timeline-number">01</span>
+          <p class="timeline-date">March 13, 2026</p>
+          <h3>The liability decision</h3>
+          <p>The Panel found that twelve public statements made or shared by Sarah were inaccurate, false and/or misleading, or encouraged non-compliance with public-health measures. It found two allegations of professional misconduct proved.</p>
+        </article>
+        <article>
+          <span class="timeline-number">02</span>
+          <p class="timeline-date">July 6, 2026</p>
+          <h3>The penalty and costs order</h3>
+          <p>The Panel ordered a reprimand, immediate revocation of Sarah's certificate of registration, and $297,976.40 in costs payable within 24 months after the order becomes final. The Panel issued the order without written reasons.</p>
+        </article>
+        <article>
+          <span class="timeline-number">03</span>
+          <p class="timeline-date">Now</p>
+          <h3>The appeal</h3>
+          <p>Sarah is asking Ontario's Divisional Court to set aside the decisions and orders, dismiss the allegations or direct a new hearing, and grant such further relief as the Court considers just.</p>
+        </article>
+      </div>
+
+      <div class="document-links" aria-label="CNO case documents">
+        <a href="case-materials/cno/notice-of-appeal-filed-2026-08-05.pdf" target="_blank" rel="noopener noreferrer">
+          <span>Read the filed court document</span>
+          <strong>Notice of Appeal</strong>
+          <small>Filed August 5, 2026 · PDF</small>
+        </a>
+        <a href="case-materials/cno/liability-decision-2026-03-13.pdf" target="_blank" rel="noopener noreferrer">
+          <span>Read the source document</span>
+          <strong>Liability Decision and Reasons</strong>
+          <small>March 13, 2026 · PDF</small>
+        </a>
+        <a href="case-materials/cno/penalty-costs-order-2026-07-06.pdf" target="_blank" rel="noopener noreferrer">
+          <span>Read the source document</span>
+          <strong>Penalty and Costs Order</strong>
+          <small>July 6, 2026 · PDF</small>
+        </a>
+      </div>
+    </section>
+
+    <section class="section section-paper" id="why-it-matters">
+      <div class="content-grid appeal-grid">
+        <div class="sticky-heading">
+          <p class="eyebrow">What the appeal challenges</p>
+          <h2>Did the Panel hear the defence fairly—and go too far in punishing public speech?</h2>
+          <p>The appeal is not a re-run of the hearing. It asks whether the process that produced the result was fair and whether the legal limits on professional regulation were respected.</p>
+        </div>
+        <div class="grounds-list">
+          <article>
+            <span>01</span>
+            <div>
+              <h3>Expert evidence and procedural fairness</h3>
+              <p>Sarah's appeal argues that the Panel misinterpreted its gatekeeping function when it restricted the opinion evidence of defence experts Dr. Steven Pelech and Dr. Byram Bridle, declined to permit Dr. David Speicher to testify as an expert, and excluded scientific literature tendered through the defence.</p>
+            </div>
+          </article>
+          <article>
+            <span>02</span>
+            <div>
+              <h3>The findings about the twelve statements</h3>
+              <p>The appeal challenges the conclusion that the impugned statements were inaccurate, false and/or misleading, and that Sarah encouraged non-compliance with public-health measures. It alleges errors of law, misapprehension of material evidence, and findings unavailable on the record properly considered.</p>
+            </div>
+          </article>
+          <article>
+            <span>03</span>
+            <div>
+              <h3>The boundary of professional regulation</h3>
+              <p>The appeal asks whether the Panel erred in applying nursing standards to public expression outside a clinical or nurse-client relationship without the required connection to nursing practice.</p>
+            </div>
+          </article>
+          <article>
+            <span>04</span>
+            <div>
+              <h3>Freedom of expression</h3>
+              <p>Section 2(b) of the Charter protects freedom of expression. The appeal argues that the Panel did not properly weigh that protection against the College's regulatory objectives, either when deciding liability or when imposing penalty.</p>
+            </div>
+          </article>
+          <article>
+            <span>05</span>
+            <div>
+              <h3>A severe order without reasons</h3>
+              <p>The appeal challenges the fitness and proportionality of the reprimand, revocation, and costs award, and the absence of written reasons explaining why the Panel imposed them.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section quote-section">
+      <div class="quote-mark" aria-hidden="true">“</div>
+      <blockquote>
+        <p>A nursing regulator should not be able to silence public dissent through an unfair process.</p>
+        <cite>The principle at the centre of Sarah's appeal</cite>
+      </blockquote>
+    </section>
+
+    <section class="section support-section" id="support">
+      <div class="support-grid">
+        <div>
+          <p class="eyebrow eyebrow-light">Help fund the appeal</p>
+          <h2>A long and complex appeal requires the resources to defend Sarah's freedom to speak and participate in public debate.</h2>
+          <p>After 28 days of liability hearings and a separate penalty hearing, the record is extensive. The appeal requires transcript review, record preparation, legal research, written argument, court attendances, and substantial disbursements.</p>
+          <ul class="fund-use-list">
+            <li>Preparing and reviewing the appeal record and transcripts</li>
+            <li>Legal research, drafting, and court preparation</li>
+            <li>Filing, hearing, and other appeal disbursements</li>
+          </ul>
+        </div>
+        <aside class="donation-card" aria-label="Ways to support Sarah's CNO appeal">
+          <p class="card-kicker">CNO Appeal Legal Fund</p>
+          <h3>Support the legal work</h3>
+          <p>Donate through the dedicated GiveSendGo campaign for Sarah's CNO appeal.</p>
+          <a class="button button-primary button-full" href="https://www.givesendgo.com/support-sarahs-cno-free-speech-appeal" target="_blank" rel="noopener noreferrer">Donate on GiveSendGo</a>
+          <div class="or"><span>or</span></div>
+          <p class="transfer-label">Interac e-Transfer</p>
+          <a class="transfer-email" href="mailto:sarahc4freedom@gmail.com">sarahc4freedom@gmail.com</a>
+          <p class="fine-print">Contributions support the CNO appeal legal fund. This site provides public information and advocacy, not legal advice. Outcomes cannot be guaranteed.</p>
+          <div class="other-fundraiser">
+            <p>This is a separate campaign from the ongoing <em>Emergencies Act</em> litigation.</p>
+            <a href="https://www.givesendgo.com/supreme-court-of-canada-appeal-of-emerge" target="_blank" rel="noopener noreferrer">Support the Emergencies Act campaign <span aria-hidden="true">→</span></a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section-light" id="sarah">
+      <div class="about-grid">
+        <div class="about-photo-stack">
+          <img class="about-main" src="images/IMAGE_6.jpg" alt="Sarah standing up for justice during her work as a union advocate">
+          <img class="about-accent" src="images/IMAGE_7.jpg" alt="Sarah smiling and flexing her arm beneath a blue sky">
+        </div>
+        <div class="about-copy">
+          <p class="eyebrow">About Sarah</p>
+          <h2>A nurse, advocate, and public voice</h2>
+          <p>Sarah Choujounian worked as an Ontario Registered Practical Nurse for more than a decade, caring for children with disabilities and residents in long-term care and serving as a union leader.</p>
+          <p>During the COVID-19 pandemic, she became a public critic of lockdowns, mandates, fear-based public-health messaging, and pressure on healthcare workers to accept the then-new mRNA vaccines. She founded Nurses Against Lockdowns and later co-founded Canadian Frontline Nurses, advocating for informed consent, open discussion of competing viewpoints and evolving evidence, and the ability of healthcare professionals to question institutions publicly.</p>
+          <p>Sarah is not currently practising nursing and does not plan to return to clinical practice. She is pursuing this appeal because she believes the decision reaches beyond her own registration to the conditions under which regulated professionals may participate in public debate.</p>
+          <div class="social-panel">
+            <strong>Follow Sarah directly</strong>
+            <div>
+              <a href="https://x.com/SarahChoujounia" target="_blank" rel="noopener noreferrer">X</a>
+              <a href="https://www.facebook.com/sarah.choujounian" target="_blank" rel="noopener noreferrer">Facebook</a>
+              <a href="https://www.instagram.com/sarah_choujounian/" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href="https://www.tiktok.com/@sarahchoujounian" target="_blank" rel="noopener noreferrer">TikTok</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cno-faq section-paper" aria-labelledby="cno-faq-title">
+      <div class="section-heading section-heading-narrow">
+        <p class="eyebrow">CNO appeal questions</p>
+        <h2 id="cno-faq-title">What people are asking</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>Did the Panel decide that every controversial COVID-19 opinion was professional misconduct?</summary>
+          <p>No. Its decision concerned twelve specified statements Sarah made or shared, the evidence presented about them, and two pleaded allegations of misconduct. Sarah's appeal challenges both the factual conclusions and the legal route by which the Panel reached them.</p>
+        </details>
+        <details>
+          <summary>Why is the excluded defence evidence important?</summary>
+          <p>Sarah sought to rely on expert opinion and peer-reviewed scientific literature to address the accuracy, context, and evidentiary basis of the statements at issue. The appeal argues that the Panel's approach to the proposed evidence was legally mistaken and procedurally unfair. The Divisional Court will determine whether those alleged errors affected the hearing or result.</p>
+        </details>
+        <details>
+          <summary>Is the appeal asking the Court to decide scientific questions?</summary>
+          <p>The appeal asks a reviewing court to decide whether the Discipline Committee acted fairly, applied the correct legal tests, and reached sustainable findings on the record. The precise role and treatment of expert and scientific evidence is central to those questions.</p>
+        </details>
+        <details>
+          <summary>Why does freedom of expression arise in a professional-discipline case?</summary>
+          <p>Regulators may protect the public and maintain professional standards, but decisions limiting expressive activity must reflect the protections in section 2(b) of the Charter. Sarah's appeal argues that the Panel did not perform the required proportionate balancing, including at the penalty stage.</p>
+        </details>
+        <details>
+          <summary>What will donations pay for?</summary>
+          <p>Donations to the CNO appeal fund are intended for the legal work and disbursements required to prosecute the appeal, including review of the extensive hearing record and transcripts, legal research, drafting, filing, and court preparation.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="section section-dark other-case" id="other-case">
+      <div class="other-case-intro">
+        <div>
+          <p class="eyebrow eyebrow-light">The other constitutional case</p>
+          <h2>The Emergencies Act and access to justice</h2>
+        </div>
+        <div>
+          <p>Sarah's work with Canadian Frontline Nurses is also connected to the litigation over the federal government's use of the <em>Emergencies Act</em> during the Freedom Convoy. That case remains at the application-for-leave stage before the Supreme Court of Canada.</p>
+          <div class="case-actions">
+            <a class="button button-light" href="https://www.scc-csc.ca/cases-dossiers/search-recherche/42262/" target="_blank" rel="noopener noreferrer">View official SCC docket</a>
+            <a class="button button-outline-light" href="https://www.givesendgo.com/supreme-court-of-canada-appeal-of-emerge" target="_blank" rel="noopener noreferrer">Support the SCC case</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="scc-status">
+        <span class="status-dot" aria-hidden="true"></span>
+        <p><strong>Current status:</strong> Leave to appeal is pending in Supreme Court of Canada file 42262. The Court has not yet decided whether it will hear the case.</p>
+      </div>
+
+      <div class="convoy-gallery" aria-label="Freedom Convoy and Canadian Frontline Nurses photographs">
+        <figure class="convoy-gallery-feature">
+          <img src="images/IMAGE_2.jpg" alt="Sarah standing in front of the Canadian Frontline Nurses truck in Ottawa">
+          <figcaption>Sarah with the Canadian Frontline Nurses truck in Ottawa</figcaption>
+        </figure>
+        <figure>
+          <img src="images/inline_photo_1.jpg" alt="Four Canadian Frontline Nurses participants gathered in Ottawa">
+          <figcaption>Canadian Frontline Nurses in Ottawa</figcaption>
+        </figure>
+        <figure>
+          <img src="images/inline_photo_2.jpg" alt="Canadian Frontline Nurses standing before the banner truck during the Freedom Convoy">
+          <figcaption>At the Freedom Convoy</figcaption>
+        </figure>
+        <figure>
+          <img src="images/inline_photo_3.jpg" alt="Canadian Frontline Nurses beside the banner truck near Parliament">
+          <figcaption>Near Parliament Hill</figcaption>
+        </figure>
+        <figure>
+          <img src="images/LEFT_IMAGE_PATH.jpg" alt="Canadian flag and Canadian Frontline Nurses truck during the Freedom Convoy">
+          <figcaption>The Convoy in Ottawa</figcaption>
+        </figure>
+      </div>
+
+      <div class="faq-list faq-dark">
+        <details>
+          <summary>Where is the Emergencies Act case right now?</summary>
+          <p>Canadian Frontline Nurses and Kristen Nagle filed an application for leave to appeal on March 17, 2026. The Attorney General of Canada responded and the applicants replied. The Supreme Court may grant or deny leave; until it decides, there is no full appeal hearing.</p>
+        </details>
+        <details>
+          <summary>Why is Canadian Frontline Nurses involved?</summary>
+          <p>Canadian Frontline Nurses was present in Ottawa, supported and communicated with Convoy participants, livestreamed events, and helped sustain the protest. It brought the first legal challenge to the emergency declaration within days after the Act was invoked.</p>
+        </details>
+        <details>
+          <summary>What did the lower courts decide?</summary>
+          <p>The Federal Court found that the legal threshold for invoking the Act was not met and that aspects of the emergency measures violated the Charter. The Federal Court of Appeal dismissed the government's appeal and upheld the central conclusion that the invocation was unreasonable.</p>
+        </details>
+        <details>
+          <summary>What is Canadian Frontline Nurses asking the Supreme Court to decide?</summary>
+          <p>The application raises questions about direct standing: whether people within the class governed by coercive emergency measures must wait until an arrest, charge, or account freeze is actually imposed before they may challenge the measures. It also raises issues concerning litigation fairness and the Canadian Bill of Rights.</p>
+        </details>
+        <details>
+          <summary>What is the federal government asking the Supreme Court to do?</summary>
+          <p>The federal government seeks leave to challenge the rulings that its use of the <em>Emergencies Act</em> was unlawful. The Court may hear the government's application, the Canadian Frontline Nurses application, both, or neither.</p>
+        </details>
+        <details>
+          <summary>What arguments were not decided by the lower courts?</summary>
+          <p>Canadian Frontline Nurses says the courts did not decide its argument that the invocation was politically motivated or its arguments under the Canadian Bill of Rights concerning property, due process, and access to financial services.</p>
+        </details>
+        <details>
+          <summary>Why was the Chief Justice's participation raised?</summary>
+          <p>Canadian Frontline Nurses asked Chief Justice Richard Wagner to consider recusal because of public comments he had made about the Convoy. The Chief Justice decided he would participate. The concern and the response are described in the parties' filed correspondence and media coverage.</p>
+        </details>
+        <details>
+          <summary>Why does this case matter beyond the Convoy?</summary>
+          <p>It concerns when Canadians may ask a court to review coercive government measures. The applicants say people should not have to wait until the threatened penalty is actually imposed before testing whether the measure is lawful.</p>
+        </details>
+      </div>
+
+      <div class="materials-row">
+        <a href="Application%20(Vol%203)%20-%20Canadian%20Frontline%20Nurses.pdf" target="_blank" rel="noopener noreferrer"><strong>Application for Leave</strong><span>Canadian Frontline Nurses</span></a>
+        <a href="Response-%20Attorney%20General%20of%20Canada.pdf" target="_blank" rel="noopener noreferrer"><strong>Response</strong><span>Attorney General of Canada</span></a>
+        <a href="Reply%20-%20Canadian%20Frontline%20Nurses.pdf" target="_blank" rel="noopener noreferrer"><strong>Reply</strong><span>Canadian Frontline Nurses</span></a>
+      </div>
+    </section>
+
+    <section class="section section-light" id="media">
+      <div class="section-heading">
+        <p class="eyebrow">Watch, listen, and read</p>
+        <h2>Sarah in the media</h2>
+        <p>Interviews, testimony, and coverage concerning Sarah's advocacy and the two cases.</p>
+      </div>
+      <div class="media-grid">
+        <a class="media-card media-featured" href="https://nationalcitizensinquiry.ca/witness/sarah-choujounian-jun-01-2024-regina-saskatchewan/" target="_blank" rel="noopener noreferrer">
+          <img src="images/IMAGE_5.jpg" alt="Sarah beside a Canadian Frontline Nurses truck in Ottawa">
+          <span class="media-type">Testimony</span>
+          <h3>Sarah Choujounian at the National Citizens Inquiry</h3>
+          <p>June 1, 2024 · Regina, Saskatchewan</p>
+        </a>
+        <a class="media-card" href="https://www.youtube.com/live/7RsTbN4p8D8?si=t7yw5ff3hBJ-UkBP" target="_blank" rel="noopener noreferrer">
+          <span class="media-type">Interview</span>
+          <h3>Viva Frei: A conversation with Sarah Choujounian</h3>
+          <p>Watch on YouTube <span aria-hidden="true">↗</span></p>
+        </a>
+        <a class="media-card" href="https://youtu.be/Rpj1tK2GePw?si=jpzzRpLLRKovPem4" target="_blank" rel="noopener noreferrer">
+          <span class="media-type">Interview</span>
+          <h3>The Jimmy Dore Show: Sarah's story</h3>
+          <p>Watch on YouTube <span aria-hidden="true">↗</span></p>
+        </a>
+        <a class="media-card" href="https://music.amazon.co.uk/podcasts/3ab43a83-6134-481e-9e2c-5516223b0789/episodes/ae5c78e5-b02f-42d8-9eeb-806be57e6ec1/ask-holly-hall-the-holly-hall-show-silenced-on-the-front-lines-with-guest-sarah-choujounian" target="_blank" rel="noopener noreferrer">
+          <span class="media-type">Podcast</span>
+          <h3>“Silenced on the Front Lines”</h3>
+          <p>The Holly Hall Show · January 29, 2026</p>
+        </a>
+        <a class="media-card" href="https://youtu.be/g7qfs59cpz0?si=EH56ZIptnONozoTk" target="_blank" rel="noopener noreferrer">
+          <span class="media-type">Speech</span>
+          <h3>Sarah's October 31, 2020 public address</h3>
+          <p>Watch on YouTube <span aria-hidden="true">↗</span></p>
+        </a>
+      </div>
+
+      <div class="press-heading">
+        <h3>Emergencies Act case coverage</h3>
+      </div>
+      <div class="press-grid">
+        <a href="https://torontosun.com/opinion/columnists/chief-justice-wagner-refuses-recusal-freedom-convoy-case-emergencies-act" target="_blank" rel="noopener noreferrer"><span>Toronto Sun</span><strong>Chief Justice Wagner refuses recusal in Freedom Convoy case</strong></a>
+        <a href="https://nationalpost.com/news/canada/emergencies-act-richard-wagner" target="_blank" rel="noopener noreferrer"><span>National Post</span><strong>Supreme Court justice asked to consider recusing himself</strong></a>
+        <a href="https://www.theglobeandmail.com/canada/article-groups-ask-supreme-court-chief-justice-to-recuse-himself-from/" target="_blank" rel="noopener noreferrer"><span>The Globe and Mail</span><strong>Group asks Chief Justice to recuse from Emergencies Act case</strong></a>
+        <a href="https://nationalpost.com/news/politics/chief-justice-richard-wagner-dismisses-request-to-recuse-from-emergencies-act-appeal" target="_blank" rel="noopener noreferrer"><span>National Post</span><strong>Chief Justice dismisses request to recuse</strong></a>
+        <a href="https://www.westernstandard.news/canadian/chief-justice-wagner-rejects-recusal-request-in-emergencies-act-appeal/73164" target="_blank" rel="noopener noreferrer"><span>Western Standard</span><strong>Chief Justice rejects recusal request</strong></a>
+        <a href="https://www.westernstandard.news/opinion/giesbrecht-wagnersrefusal-to-recuse-himself-from-the-emergency-act-appeal-is-a-mistake-so-are-his-courts-radical-indigenous-decisions/73203" target="_blank" rel="noopener noreferrer"><span>Western Standard Opinion</span><strong>Wagner's refusal to recuse himself from the Emergencies Act appeal is a mistake</strong></a>
+        <a href="https://torontosun.com/video/bc3576ae-4588-11f1-9c57-b2d654770e7e/lilley-unleashed-supreme-court-chief-justice-richard-wagner-has-declared-he-is-above-the-law" target="_blank" rel="noopener noreferrer"><span>Toronto Sun Video</span><strong>Supreme Court Chief Justice Richard Wagner has declared he is above the law</strong></a>
+        <a href="https://nationalpost.com/opinion/the-arrogance-of-chief-justice-richard-wagner" target="_blank" rel="noopener noreferrer"><span>National Post Opinion</span><strong>The debate over public confidence and recusal</strong></a>
+        <a href="https://www.theglobeandmail.com/opinion/editorials/article-chief-justice-richard-wagner-supreme-court/" target="_blank" rel="noopener noreferrer"><span>The Globe and Mail Editorial Board</span><strong>Why Chief Justice Richard Wagner should recuse himself</strong></a>
+      </div>
+    </section>
+
+    <section class="closing-cta">
+      <div>
+        <p class="eyebrow eyebrow-light">Public debate needs room for dissent</p>
+        <h2>Help Sarah defend her freedom to speak and question powerful institutions.</h2>
+      </div>
+      <div>
+        <a class="button button-light" href="#support">Support Sarah's CNO Appeal</a>
+        <nav class="closing-socials" aria-label="Follow Sarah">
+          <a href="https://x.com/SarahChoujounia" target="_blank" rel="noopener noreferrer">X</a>
+          <a href="https://www.facebook.com/sarah.choujounian" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="https://www.instagram.com/sarah_choujounian/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://www.tiktok.com/@sarahchoujounian" target="_blank" rel="noopener noreferrer">TikTok</a>
+        </nav>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand brand-footer" href="#top"><span class="brand-mark" aria-hidden="true">S</span><span>Sarah <em>for</em> Freedom</span></a>
+    <p>Public information and advocacy concerning Sarah Choujounian's legal cases. Nothing on this site is legal advice.</p>
+    <p>© <span id="year">2026</span> Sarah for Freedom. All rights reserved.</p>
   </footer>
 </body>
 </html>
