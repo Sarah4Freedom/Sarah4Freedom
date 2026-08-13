@@ -369,7 +369,7 @@ h3 { font-size: 1.3rem; line-height: 1.28; letter-spacing: -0.02em; }
 .media-card.has-thumbnail:hover .media-thumb img { transform: scale(1.025); }
 .media-play { position: absolute; left: 50%; top: 50%; display: grid; width: 58px; height: 42px; place-items: center; padding-left: 3px; color: var(--white); background: rgba(12,17,27,0.86); border-radius: 10px; box-shadow: 0 6px 22px rgba(0,0,0,0.3); transform: translate(-50%, -50%); font-size: 1rem; }
 .media-play-youtube { background: #ff0033; }
-.media-card-body { display: flex; min-height: 186px; flex: 1; flex-direction: column; padding: 22px 26px 24px; }
+.media-card-body { display: flex; min-height: 192px; flex: 1; flex-direction: column; padding: 22px 26px 24px; }
 .media-card-body .media-type { margin-bottom: 0; }
 .media-card-body h3 { margin-top: 14px; }
 .media-card-body p { margin-top: auto; padding-top: 10px; }
